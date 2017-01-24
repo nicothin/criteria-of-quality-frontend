@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Критерии верстки</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+  </script>
+</head>
+<body>
+
+  <header class="page-header  container">
+    <h1>Проверка вёрстки</h1>
+    <p>Универсальная форма для код-ревью в ходе обучения вёрстке.</p>
+  </header>
+
+  <div class="container">
+
+    <section class="panel">
+      <header class="panel__heading">
+        <h2 class="panel__title">Об этом код-ревью</h2>
+      </header>
+      <div class="panel__body">
+        <div class="progress" data-text="Общий прогресс:" data-percent="60%">
+          <span class="progress__bar  progress__bar--success" style="width: 60%;"></span>
+        </div>
+        <div class="form-field">
+          <label class="form-field__label">
+            <span class="form-field__name">Ссылка на этот код-ревью</span>
+            <textarea class="form-field__text-input" rows="3"></textarea>
+          </label>
+        </div>
+        <div class="row">
+          <div class="col-sm-6  col-md-4">
+            <div class="form-field">
+              <label class="form-field__label">
+                <span class="form-field__name">Автор</span>
+                <input class="form-field__text-input" type="text" value="Доброжелательный Анонимус">
+              </label>
+            </div>
+          </div>
+          <div class="col-sm-6  col-md-4">
+            <div class="form-field">
+              <label class="form-field__label">
+                <span class="form-field__name">Проверяемый URL</span>
+                <input class="form-field__text-input" type="url" placeholder="https://github.com...">
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="alert  alert--danger">
+          <h3>Прикрепленное сообщение</h3>
+          <p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные.</p>
+          <p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="page-footer  container">
+    <p>© Николай Громов</p>
+  </footer>
+
+</body>
+</html>
