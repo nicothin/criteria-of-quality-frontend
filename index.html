@@ -11,31 +11,6 @@
     var codeReviewGET = parseGETParameters();
     console.log(codeReviewGET);
 
-    // Парсит get. Вернет объект или false
-    function parseGETParameters() {
-      var realGet = window.location.search;
-      if(!realGet) return false;
-      var result = {};
-      var gets = realGet.replace(/&amp;/g, '&').substring(1).split('&');
-      for (var i = 0; i < gets.length; i++) {
-        var get = gets[i].split('=');
-        result[get[0]] = typeof(get[1]) == 'undefined' ? '' : get[1];
-      }
-      return result;
-    }
-
-    // Нахождение ближайшего родителя по CSS-селектору
-    (function(e){
-     e.closest = e.closest || function(css){
-       var node = this;
-       while (node) {
-          if (node.matches(css)) return node;
-          else node = node.parentElement;
-       }
-       return null;
-     }
-    })(Element.prototype);
-
     // Добавим на html флаг работающего JS
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
 
@@ -61,6 +36,26 @@
         document.getElementById('review-author').value = decodeURI(codeReviewGET.auth).replace( /\+/g, ' ' );
         document.getElementById('review-url').value = decodeURIComponent(codeReviewGET.url);
         document.getElementById('review-msg').value = decodeURI(codeReviewGET.comm).replace( /\+/g, ' ' );
+
+        // Пройдем по чекбоксам, расставим их, допишем классы
+        checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox, i) {
+          var checkName = checkbox.name;
+          if(checkName && codeReviewGET[checkName]) {
+            checkbox.checked = true;
+          }
+          // TODO: проверять родительскую группу этого чекбокса
+        });
+
+        // TODO: при постановке чекбокса снимать класс акцентирования, при снятии чекбокса — наоборот
+        // TODO: при постановке или снятии чекбокса проверять его родительскую группу
+
+        // TODO: вынести в функцияю проверку родительской группы, передавать функции группу
+        // Если хоть один чекбокс в группе проставлен, отмечаем общий чекбокс
+        // Если хоть все чекбоксы группы сняты, снимаем общий чекбокс
+
+        // TODO: вынести в функцию подсчет процента соблюдённых обязательных критериев
+
       }
 
       // Обрабатываем клики на кнопках «Подробнее» (делегируем обработку на document)
@@ -73,6 +68,34 @@
       });
 
     });
+
+    // Парсит get.
+    // Вернет объект или false
+    function parseGETParameters() {
+      var realGet = window.location.search;
+      if(!realGet) return false;
+      var result = {};
+      var gets = realGet.replace(/&amp;/g, '&').substring(1).split('&');
+      for (var i = 0; i < gets.length; i++) {
+        var get = gets[i].split('=');
+        result[get[0]] = typeof(get[1]) == 'undefined' ? '' : get[1];
+      }
+      return result;
+    }
+
+    // Вернет ближайшего родителя по CSS-селектору
+    // var parent = child.closest(parentSelector)
+    (function(e){
+     e.closest = e.closest || function(css){
+       var node = this;
+       while (node) {
+          if (node.matches(css)) return node;
+          else node = node.parentElement;
+       }
+       return null;
+     }
+    })(Element.prototype);
+
   </script>
 </head>
 <body>
@@ -137,10 +160,10 @@
         <h2 class="panel__title">Об этом код-ревью</h2>
       </header>
       <div class="panel__body">
-        <div class="progress__container" data-text="Обязательные критерии:" data-percent="50%">
-          <span class="progress__bar  progress__bar--mandatory" style="width:50%;"></span>
+        <div id="mandatory-progress-bar" class="progress__container" data-text="Обязательные критерии:" data-percent="0%">
+          <span class="progress__bar  progress__bar--mandatory" style="width:0%;"></span>
         </div>
-        <div class="progress__container" data-text="Необязательные критерии:" data-percent="90%">
+        <div id="optional-progress-bar" class="progress__container" data-text="Необязательные критерии:" data-percent="90%" style="display: none;">
           <span class="progress__bar  progress__bar--optional" style="width:90%;"></span>
         </div>
         <div class="pseudoform">
@@ -159,7 +182,7 @@
                 </label>
               </div>
             </div>
-            <div class="col-sm-6  col-md-4">
+            <div class="col-sm-6  col-md-8">
               <div class="form-field">
                 <label class="form-field__label">
                   <span class="form-field__name">Проверяемый URL</span>
@@ -170,7 +193,7 @@
           </div>
           <div class="form-field">
             <label class="form-field__label">
-              <span class="form-field__name">Сообщение, прикрепленное к код-ревью</span>
+              <span class="form-field__name">Сообщение, прикрепленное к код-ревью. Не более 812 символов.</span>
               <textarea id="review-msg" class="form-field__text-input" rows="6" placeholder="На что обратить особое внимание, какие навыки прокачивать." maxlength="812" name="comm"></textarea>
             </label>
           </div>
@@ -178,32 +201,33 @@
       </div>
     </section>
 
-    <section class="check-section">
+    <section class="check-section" data-js-check-section>
+
       <label class="check-section__heading">
-        <input class="check-section__heading-checkbox" type="checkbox" name="r0" checked>
+        <input class="check-section__heading-checkbox" type="checkbox" name="r0">
         <h2 class="check-section__heading-text">Секция правилСекция правилСекция правилСекция правилСекция правилСекция правилСекция правилСекция правил</h2>
       </label>
 
-      <section id="r1" class="panel  panel--collapse  check-section__item">
+      <section class="panel  panel--collapse  check-section__item">
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="r1">
             <h3 class="panel__title-text">Какое-то правило</h3>
           </label>
-          <span class="panel__title-btn-wrap"><span class="btn  check-section__btn" data-text="Подробнее" data-js-pct id="test"></span></span>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-pct>Подробнее</button></span>
         </header>
         <div class="panel__body">
           <p>111</p>
         </div>
       </section>
 
-      <section id="r2" class="panel  panel--accent  check-section__item">
+      <section class="panel  panel--accent  check-section__item">
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="r2">
             <h3 class="panel__title-text">Какое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правило</h3>
           </label>
-          <span class="panel__title-btn-wrap"><span class="btn  check-section__btn" data-text="Подробнее" data-js-pct></span></span>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-pct>Подробнее</button></span>
         </header>
         <div class="panel__body">
           <p>Какое-то пояснение</p>
@@ -217,11 +241,50 @@
 
     </section>
 
+    <section class="check-section" data-js-check-section>
+
+      <label class="check-section__heading">
+        <input class="check-section__heading-checkbox" type="checkbox" name="c0">
+        <h2 class="check-section__heading-text">Секция правил</h2>
+      </label>
+
+      <section class="panel  panel--collapse  check-section__item">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="c1">
+            <h3 class="panel__title-text">Какое-то правило</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-pct>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>111</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--accent  check-section__item">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="c2">
+            <h3 class="panel__title-text">Какое-то правило</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-pct>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Какое-то пояснение</p>
+          <pre>
+            <code>&lt;div class=&quot;foo&quot;&gt;</code>
+            <code>  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;</code>
+            <code>&lt;/div&gt;</code>
+          </pre>
+        </div>
+      </section>
+
+    </section>
+
     <div class="main-nav">
       <div class="container  main-nav__inner">
         <ul class="main-nav__list">
-          <li><a href="">Репозиторий</a></li>
-          <li><a href="">EpicSkills</a></li>
+          <li><a href="https://github.com/nicothin/criteria-of-quality-frontend">Репозиторий проекта</a></li>
         </ul>
         <button class="btn  main-nav__send-btn">Готово</button>
       </div>
