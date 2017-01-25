@@ -161,13 +161,15 @@
               <textarea class="form-field__text-input" rows="6" placeholder="На что обратить особое внимание, какие навыки прокачивать." name="comm"></textarea>
             </label>
           </div>
-          <button class="btn">Вызвать отправку формы и, соответственно, показать GET</button>
         </div>
       </div>
     </section>
 
     <section class="check-section">
-      <h2 class="check-section__heading">Разметка</h2>
+      <label class="check-section__heading">
+        <input class="check-section__heading-checkbox" type="checkbox" name="r0" checked>
+        <h2 class="check-section__heading-text">Секция правилСекция правилСекция правилСекция правилСекция правилСекция правилСекция правилСекция правил</h2>
+      </label>
 
       <section id="r1" class="panel  panel--collapse  check-section__item">
         <header class="panel__header">
@@ -182,7 +184,7 @@
         </div>
       </section>
 
-      <section id="r2" class="panel  check-section__item">
+      <section id="r2" class="panel  panel--accent  check-section__item">
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="r2">
@@ -201,6 +203,8 @@
       </section>
 
     </section>
+
+    <button class="btn  send-btn">Готово <span class="btn__small">Получить URL</span></button>
 
   </form>
 

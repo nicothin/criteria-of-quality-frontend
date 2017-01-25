@@ -187,7 +187,7 @@ kbd kbd {
 pre {
   display: block;
   padding: 5px 5px 3px 10px;
-  margin: 0 0 10px;
+  margin: 0 0 0.8em;
   line-height: 1.42857143;
   word-break: break-all;
   word-wrap: break-word;
@@ -396,6 +396,10 @@ textarea.form-field__text-input {
   background-color: #204d74;
   border-color: #122b40;
 }
+.btn__small {
+  display: block;
+  font-size: 0.8em;
+}
 
 
 
@@ -601,8 +605,7 @@ textarea.form-field__text-input {
 .panel {
   margin-bottom: 20px;
   background-color: #ffffff;
-  border: 1px solid transparent;
-  border-color: #dddddd;
+  border: 1px solid #dddddd;
   border-radius: 4px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
@@ -610,13 +613,12 @@ textarea.form-field__text-input {
   padding: 15px 15px 0;
 }
 .panel__header {
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid #dddddd;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
   color: #333333;
   margin: 0;
   background-color: #f5f5f5;
-  border-color: #dddddd;
 }
 @media (min-width: 600px) {
   .panel__header {
@@ -660,6 +662,14 @@ textarea.form-field__text-input {
 }
 .panel--collapse .panel__body {
   display: none;
+}
+.panel--accent {
+  border-color: #e28686;
+}
+.panel--accent .panel__header {
+  border-bottom: 1px solid #e28686;
+  color: #333333;
+  background-color: #ffbaba;
 }
 
 
@@ -729,6 +739,18 @@ textarea.form-field__text-input {
 .check-section__btn:before {
   content: attr(data-text);
 }
+.check-section__heading {
+  display: flex;
+  align-items: baseline;
+  padding-left: 15px;
+  margin-bottom: 10px;
+}
+.check-section__heading-text {
+  margin-left: 15px;
+}
+.check-section__heading-checkbox {
+  flex-shrink: 0;
+}
 
 .loading-page {
   display: block !important;
@@ -759,6 +781,12 @@ textarea.form-field__text-input {
 }
 
 .pseudoform {}
+
+  .send-btn {
+    position: fixed;
+    bottom: 5px;
+    right: 15px;
+  }
 
 
 
