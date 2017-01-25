@@ -596,7 +596,7 @@ textarea.form-field__text-input {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 .panel__body {
-  padding: 15px 15px 5px;
+  padding: 15px 15px 0;
 }
 .panel__header {
   border-bottom: 1px solid transparent;
@@ -719,12 +719,31 @@ textarea.form-field__text-input {
   content: attr(data-text);
 }
 
-.js .no-js-warning {
+.loading-page {
+  text-align: center;
+}
+.loading-page:after {
+  display: block;
+  padding: 5px 0 20px;
+  content: attr(data-text);
+}
+
+.js .no-js-msg {
   display: none;
 }
 
-.no-js .main-content {
+.main-content {
   display: none;
+}
+
+.no-js .loading-page,
+.dom-content-loaded .loading-page {
+  display: none;
+}
+
+/* Главный контент виден только если работает JS и сработало событие DOMContentLoaded */
+.js.dom-content-loaded .main-content {
+  display: block;
 }
 
 .pseudoform {}

@@ -7,19 +7,9 @@
   <title>Критерии верстки</title>
   <link rel="stylesheet" href="style.css">
   <script>
-    // Пометим, что JS работает
-    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-
     // да-да, это ГЛОБАЛЬНАЯ переменная, я знаю что делаю
     var codeReviewGET = parseGETParameters();
     console.log(codeReviewGET);
-
-    // Проверим пришел ли GET. Если пришел, менять класс на html
-    (function(){
-      if (codeReviewGET) {
-        document.documentElement.classList.add('has-get');
-      }
-    })();
 
     // Парсит get. Вернет объект или false
     function parseGETParameters() {
@@ -33,6 +23,43 @@
       }
       return result;
     }
+
+    // Нахождение ближайшего родителя по CSS-селектору
+    (function(e){
+     e.closest = e.closest || function(css){
+       var node = this;
+       while (node) {
+          if (node.matches(css)) return node;
+          else node = node.parentElement;
+       }
+       return null;
+     }
+    })(Element.prototype);
+
+    // Добавим на html флаг работающего JS
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+    // По факту загрузки страницы — работаем
+    document.addEventListener('DOMContentLoaded', function() {
+
+      // Добавим на html флаг загрузки страницы
+      document.documentElement.classList.add('dom-content-loaded');
+
+      // Проверим пришел ли GET. Если пришел, добавим класс на html
+      if (codeReviewGET) {
+        document.documentElement.classList.add('has-get');
+      }
+
+      // Обрабатываем клики на кнопках «Подробнее» (делегируем обработку на document)
+      var root = document;
+      root.addEventListener('click', function(event) {
+        var moreButton = event.target;
+        if( moreButton.attributes['data-js-pct'] ) {
+          moreButton.closest(".panel").classList.toggle('panel--collapse');
+        }
+      });
+
+    });
   </script>
 </head>
 <body>
@@ -42,10 +69,52 @@
     <p>Универсальная форма для код-ревью в ходе обучения вёрстке.</p>
   </header>
 
-  <div class="container  no-js-warning">
+  <div class="container  no-js-msg">
     <div class="alert  alert--danger">
       <b>ВНИМАНИЕ!</b> Эта страница не работает с отключенным Javascript. <br>Включите javascript или воспользуйтесь <a href="https://www.youtube.com/watch?v=0E00Zuayv9Q">универсальной инструкцией от Косаки Даимао</a>.
     </div>
+  </div>
+
+  <div class="container  loading-page"  data-text="Загружается">
+    <svg class="" width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-default">
+      <path fill="none" class="bk" d="M0 0h100v100H0z"/>
+      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="translate(0 -30)">
+        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(30 105.98 65)">
+        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.083s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(60 75.98 65)">
+        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.16s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(90 65 65)">
+        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.25s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(120 58.66 65)">
+        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.33s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(150 54.02 65)">
+        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.416s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(180 50 65)">
+        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.5s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(-150 45.98 65)">
+        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.583s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(-120 41.34 65)">
+        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.6s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(-90 35 65)">
+        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.75s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(-60 24.02 65)">
+        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.833s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(-30 -5.98 65)">
+        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.916s" repeatCount="indefinite"/>
+      </rect>
+    </svg>
   </div>
 
   <form class="container  main-content" action="">
@@ -106,7 +175,7 @@
             <input class="panel__checkbox" type="checkbox" name="r1">
             <h3 class="panel__title-text">Какое-то правило</h3>
           </label>
-          <span class="panel__title-btn-wrap"><span class="btn  panel__title-btn  check-section__btn" data-text="Пояснения"></span></span>
+          <span class="panel__title-btn-wrap"><span class="btn  check-section__btn" data-text="Подробнее" data-js-pct id="test"></span></span>
         </header>
         <div class="panel__body">
           <p>111</p>
@@ -119,7 +188,7 @@
             <input class="panel__checkbox" type="checkbox" name="r2">
             <h3 class="panel__title-text">Какое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правило</h3>
           </label>
-          <span class="panel__title-btn-wrap"><span class="btn  panel__title-btn  check-section__btn" data-text="Пояснения"></span></span>
+          <span class="panel__title-btn-wrap"><span class="btn  check-section__btn" data-text="Подробнее" data-js-pct></span></span>
         </header>
         <div class="panel__body">
           <p>Какое-то пояснение</p>
