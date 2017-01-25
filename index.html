@@ -7,7 +7,32 @@
   <title>Критерии верстки</title>
   <link rel="stylesheet" href="style.css">
   <script>
+    // Пометим, что JS работает
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+    // да-да, это ГЛОБАЛЬНАЯ переменная, я знаю что делаю
+    var codeReviewGET = parseGETParameters();
+    console.log(codeReviewGET);
+
+    // Проверим пришел ли GET. Если пришел, менять класс на html
+    (function(){
+      if (codeReviewGET) {
+        document.documentElement.classList.add('has-get');
+      }
+    })();
+
+    // Парсит get. Вернет объект или false
+    function parseGETParameters() {
+      var realGet = window.location.search;
+      if(!realGet) return false;
+      var result = {};
+      var gets = realGet.replace(/&amp;/g, '&').substring(1).split('&');
+      for (var i = 0; i < gets.length; i++) {
+        var get = gets[i].split('=');
+        result[get[0]] = typeof(get[1]) == 'undefined' ? '' : get[1];
+      }
+      return result;
+    }
   </script>
 </head>
 <body>
@@ -17,10 +42,16 @@
     <p>Универсальная форма для код-ревью в ходе обучения вёрстке.</p>
   </header>
 
-  <div class="container">
+  <div class="container  no-js-warning">
+    <div class="alert  alert--danger">
+      <b>ВНИМАНИЕ!</b> Эта страница не работает с отключенным Javascript. <br>Включите javascript или воспользуйтесь <a href="https://www.youtube.com/watch?v=0E00Zuayv9Q">универсальной инструкцией от Косаки Даимао</a>.
+    </div>
+  </div>
+
+  <form class="container  main-content" action="">
 
     <section class="panel  about">
-      <header class="panel__heading">
+      <header class="panel__header">
         <h2 class="panel__title">Об этом код-ревью</h2>
       </header>
       <div class="panel__body">
@@ -30,39 +61,74 @@
         <div class="progress__container" data-text="Необязательные критерии:" data-percent="90%">
           <span class="progress__bar  progress__bar--optional" style="width:90%;"></span>
         </div>
-        <div class="form-field">
-          <label class="form-field__label">
-            <span class="form-field__name">Ссылка на этот код-ревью</span>
-            <textarea class="form-field__text-input" rows="3"></textarea>
-          </label>
-        </div>
-        <div class="row">
-          <div class="col-sm-6  col-md-4">
-            <div class="form-field">
-              <label class="form-field__label">
-                <span class="form-field__name">Автор</span>
-                <input class="form-field__text-input" type="text" value="Доброжелательный Анонимус">
-              </label>
+        <div class="pseudoform">
+          <div class="form-field">
+            <label class="form-field__label">
+              <span class="form-field__name">Ссылка на этот код-ревью</span>
+              <textarea class="form-field__text-input" rows="3" name="link"></textarea>
+            </label>
+          </div>
+          <div class="row">
+            <div class="col-sm-6  col-md-4">
+              <div class="form-field">
+                <label class="form-field__label">
+                  <span class="form-field__name">Автор</span>
+                  <input class="form-field__text-input" type="text" value="Анонимус" name="auth">
+                </label>
+              </div>
+            </div>
+            <div class="col-sm-6  col-md-4">
+              <div class="form-field">
+                <label class="form-field__label">
+                  <span class="form-field__name">Проверяемый URL</span>
+                  <input class="form-field__text-input" type="url" placeholder="https://github.com..." name="url">
+                </label>
+              </div>
             </div>
           </div>
-          <div class="col-sm-6  col-md-4">
-            <div class="form-field">
-              <label class="form-field__label">
-                <span class="form-field__name">Проверяемый URL</span>
-                <input class="form-field__text-input" type="url" placeholder="https://github.com...">
-              </label>
-            </div>
+          <div class="form-field">
+            <label class="form-field__label">
+              <span class="form-field__name">Сообщение, прикрепленное к код-ревью</span>
+              <textarea class="form-field__text-input" rows="6" placeholder="На что обратить особое внимание, какие навыки прокачивать." name="comm"></textarea>
+            </label>
           </div>
-        </div>
-        <div class="alert  alert--danger">
-          <h3>Прикрепленное сообщение</h3>
-          <p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные.</p>
-          <p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные.</p>
+          <button class="btn">Вызвать отправку формы и, соответственно, показать GET</button>
         </div>
       </div>
     </section>
 
-  </div>
+    <section class="check-section">
+      <h2 class="check-section__heading">Разметка</h2>
+
+      <section id="r1" class="panel  panel--collapse  check-section__item">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r1">
+            <h3 class="panel__title-text">Какое-то правило</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><span class="btn  panel__title-btn  check-section__btn" data-text="Пояснения"></span></span>
+        </header>
+        <div class="panel__body">
+          <p>111</p>
+        </div>
+      </section>
+
+      <section id="r2" class="panel  check-section__item">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r2">
+            <h3 class="panel__title-text">Какое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правило</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><span class="btn  panel__title-btn  check-section__btn" data-text="Пояснения"></span></span>
+        </header>
+        <div class="panel__body">
+          <p>Какое-то пояснение</p>
+        </div>
+      </section>
+
+    </section>
+
+  </form>
 
   <footer class="page-footer  container">
     <p>© Николай Громов</p>
