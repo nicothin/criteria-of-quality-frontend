@@ -630,7 +630,7 @@ textarea.form-field__text-input {
 }
 .panel__title {
   margin: 0;
-  padding: 12px 15px 0;
+  padding: 15px 15px 0;
   color: inherit;
   flex-grow: 1;
   display: flex;
