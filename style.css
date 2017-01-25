@@ -720,6 +720,7 @@ textarea.form-field__text-input {
 }
 
 .loading-page {
+  display: block !important;
   text-align: center;
 }
 .loading-page:after {
@@ -738,12 +739,12 @@ textarea.form-field__text-input {
 
 .no-js .loading-page,
 .dom-content-loaded .loading-page {
-  display: none;
+  display: none !important;
 }
 
 /* Главный контент виден только если работает JS и сработало событие DOMContentLoaded */
 .js.dom-content-loaded .main-content {
-  display: block;
+  display: block !important;
 }
 
 .pseudoform {}
