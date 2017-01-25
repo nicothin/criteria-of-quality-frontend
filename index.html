@@ -45,9 +45,22 @@
       // Добавим на html флаг загрузки страницы
       document.documentElement.classList.add('dom-content-loaded');
 
-      // Проверим пришел ли GET. Если пришел, добавим класс на html
+      // Если пришел GET
       if (codeReviewGET) {
+
+        // Добавим класс на html
         document.documentElement.classList.add('has-get');
+
+        // Заполним общие поля формы
+        var fieldReviewURL = document.getElementById('review-link');
+        fieldReviewURL.value = location.href;
+        // По фокусу на поле URL будем выделять в нем текст
+        fieldReviewURL.addEventListener('focus', function() {
+          this.select();
+        });
+        document.getElementById('review-author').value = decodeURI(codeReviewGET.auth).replace( /\+/g, ' ' );
+        document.getElementById('review-url').value = decodeURIComponent(codeReviewGET.url);
+        document.getElementById('review-msg').value = decodeURI(codeReviewGET.comm).replace( /\+/g, ' ' );
       }
 
       // Обрабатываем клики на кнопках «Подробнее» (делегируем обработку на document)
@@ -134,7 +147,7 @@
           <div class="form-field  form-review-link">
             <label class="form-field__label">
               <span class="form-field__name">Ссылка на этот код-ревью</span>
-              <textarea class="form-field__text-input" rows="3"></textarea>
+              <textarea id="review-link" class="form-field__text-input" rows="3"></textarea>
             </label>
           </div>
           <div class="row">
@@ -142,7 +155,7 @@
               <div class="form-field">
                 <label class="form-field__label">
                   <span class="form-field__name">Автор</span>
-                  <input class="form-field__text-input" type="text" value="Анонимус" name="auth">
+                  <input id="review-author" class="form-field__text-input" type="text" value="Анонимус" name="auth">
                 </label>
               </div>
             </div>
@@ -150,7 +163,7 @@
               <div class="form-field">
                 <label class="form-field__label">
                   <span class="form-field__name">Проверяемый URL</span>
-                  <input class="form-field__text-input" type="url" placeholder="https://github.com..." name="url">
+                  <input id="review-url" class="form-field__text-input" type="url" placeholder="https://github.com..." name="url">
                 </label>
               </div>
             </div>
@@ -158,7 +171,7 @@
           <div class="form-field">
             <label class="form-field__label">
               <span class="form-field__name">Сообщение, прикрепленное к код-ревью</span>
-              <textarea class="form-field__text-input" rows="6" placeholder="На что обратить особое внимание, какие навыки прокачивать." name="comm"></textarea>
+              <textarea id="review-msg" class="form-field__text-input" rows="6" placeholder="На что обратить особое внимание, какие навыки прокачивать." maxlength="812" name="comm"></textarea>
             </label>
           </div>
         </div>
