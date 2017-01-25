@@ -186,9 +186,8 @@ kbd kbd {
 }
 pre {
   display: block;
-  padding: 9.5px;
+  padding: 5px 5px 3px 10px;
   margin: 0 0 10px;
-  font-size: 13px;
   line-height: 1.42857143;
   word-break: break-all;
   word-wrap: break-word;
@@ -198,14 +197,26 @@ pre {
   border-radius: 4px;
   overflow: auto;
   max-height: 340px;
+  counter-reset: code;
+  white-space: normal;
 }
 pre code {
-  padding: 0;
-  font-size: inherit;
-  color: inherit;
-  white-space: pre-wrap;
-  background-color: transparent;
+  display: block;
+  position: relative;
+  padding: 0 0 0 2em;
   border-radius: 0;
+  background: 0 0;
+  line-height: 1.7;
+  white-space: pre;
+  tab-size: 2;
+}
+pre code:not(:only-child)::before {
+  position: absolute;
+  margin-left: -2em;
+  color: inherit;
+  counter-increment: code;
+  content: counter(code,decimal-leading-zero) ".";
+  opacity: 0.5;
 }
 
 
