@@ -19,6 +19,7 @@ body {
   background-color: #fff;
   color: #333;
   min-width: 320px;
+  padding-top: 35px;
 }
 @media (min-width: 1024px) {
   body {
@@ -780,13 +781,45 @@ textarea.form-field__text-input {
   display: block !important;
 }
 
-.pseudoform {}
+.form-review-link {
+  display: none;
+}
+.has-get .form-review-link {
+  display: block;
+}
 
-  .send-btn {
-    position: fixed;
-    bottom: 5px;
-    right: 15px;
-  }
+.main-nav {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #dddddd;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.main-nav__inner {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.main-nav__list {
+  margin: 0 0 0 -5px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.main-nav__list a {
+  display: block;
+  padding: 5px;
+  margin-right: 0.3em;
+}
+.main-nav__send-btn {
+  margin-left: auto;
+}
 
 
 
