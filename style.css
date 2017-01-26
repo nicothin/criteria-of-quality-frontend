@@ -430,7 +430,7 @@ textarea.form-field__text-input {
 */
 @media (min-width: 1200px) {
   .container {
-    width: 1200px;
+    width: 1170px;
   }
 }
 .row {
@@ -616,13 +616,21 @@ textarea.form-field__text-input {
 .panel--collapse .panel__body {
   display: none;
 }
-.panel--accent {
+.panel--error {
   border-color: #e28686;
 }
-.panel--accent .panel__header {
+.panel--error .panel__header {
   border-bottom: 1px solid #e28686;
   color: #333333;
   background-color: #ffbaba;
+}
+.panel--success {
+  border-color: #99D499;
+}
+.panel--success .panel__header {
+  border-bottom: 1px solid #99D499;
+  color: #333333;
+  background-color: #AEEEAE;
 }
 
 

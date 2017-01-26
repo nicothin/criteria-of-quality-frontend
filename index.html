@@ -37,37 +37,102 @@
         document.getElementById('review-url').value = decodeURIComponent(codeReviewGET.url);
         document.getElementById('review-msg').value = decodeURI(codeReviewGET.comm).replace( /\+/g, ' ' );
 
-        // Пройдем по чекбоксам, расставим их, допишем классы
-        checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(function(checkbox, i) {
+        // Поставим фокус в поле с адресом этого обзора
+        fieldReviewURL.focus();
+
+        // Пройдем по внутренним чекбоксам, расставим их, допишем классы
+        document.querySelectorAll('[data-js-rule-checkbox]').forEach(function(checkbox, i) {
           var checkName = checkbox.name;
-          if(checkName && codeReviewGET[checkName]) {
+          if (checkName && codeReviewGET[checkName]) {
             checkbox.checked = true;
           }
-          // TODO: проверять родительскую группу этого чекбокса
+          checkboxGroupCheck(checkbox); // проверим необходимость группового чекбокса
         });
 
-        // TODO: при постановке чекбокса снимать класс акцентирования, при снятии чекбокса — наоборот
-        // TODO: при постановке или снятии чекбокса проверять его родительскую группу
+      } // Если пришел GET
 
-        // TODO: вынести в функцияю проверку родительской группы, передавать функции группу
-        // Если хоть один чекбокс в группе проставлен, отмечаем общий чекбокс
-        // Если хоть все чекбоксы группы сняты, снимаем общий чекбокс
+      // При съемке группового чекбокса
+      // - снимать все внутренние чекбоксы
+      // - убирать классы панелей
+      document.addEventListener('change', function(event) {
+        var groupCheckbox = event.target;
+        if (groupCheckbox.attributes['data-js-main-checkbox'] && groupCheckbox.checked === false) {
+          var group = groupCheckbox.closest('[data-js-check-section]');
+          group.querySelectorAll('[data-js-rule-checkbox]').forEach(function(checkbox, i) {
+            checkbox.checked = false;
+            var checkboxParent = checkbox.closest('[data-js-panel-parent]');
+            var successClass = checkboxParent.getAttribute('data-js-success-class');
+            var errorClass = checkboxParent.getAttribute('data-js-error-class');
+            checkboxParent.classList.remove(successClass, errorClass);
+          });
+        }
+      });
 
-        // TODO: вынести в функцию подсчет процента соблюдённых обязательных критериев
+      // При изменении внутреннего чекбокса
+      // - проверять групповой чекбокс
+      // - если проставлен, добавлять класс соблюдения, убирать класс ошибочности
+      // - если снят, добавлять класс ошибочности, убирать класс соблюдения
+      document.addEventListener('change', function(event) {
+        var ruleCheckbox = event.target;
+        if (ruleCheckbox.attributes['data-js-rule-checkbox']) {
+          var checkboxParent = ruleCheckbox.closest('[data-js-panel-parent]');
+          var successClass = checkboxParent.getAttribute('data-js-success-class');
+          var errorClass = checkboxParent.getAttribute('data-js-error-class');
+          if (ruleCheckbox.checked === true) {
+            checkboxParent.classList.add(successClass);
+            checkboxParent.classList.remove(errorClass);
+          }
+          else {
+            checkboxParent.classList.add(errorClass);
+            checkboxParent.classList.remove(successClass);
+          }
+          checkboxGroupCheck(ruleCheckbox); // проверять необходимость группового чекбокса
+        }
+      });
 
-      }
-
-      // Обрабатываем клики на кнопках «Подробнее» (делегируем обработку на document)
-      var root = document;
-      root.addEventListener('click', function(event) {
+      // При клике на кнопке «Подробнее» — переключать видимость спойлера
+      document.addEventListener('click', function(event) {
         var moreButton = event.target;
-        if( moreButton.attributes['data-js-pct'] ) {
-          moreButton.closest(".panel").classList.toggle('panel--collapse');
+        if (moreButton.attributes['data-js-panel-collapse-toggler']) {
+          var panelParent = moreButton.closest('[data-js-panel-parent]');
+          panelParent.classList.toggle(panelParent.getAttribute('data-js-panel-collapse-class'));
         }
       });
 
     });
+
+    // TODO: вынести в функцию подсчет процента соблюдённых обязательных критериев
+
+    // Ставит или снимает общий чекбокс группы правил, убирает внутренние акценты в случае снятия
+    // Ждет внутренний чекбокс группы
+    // Вернет true/false в зависимости от результата для группового чекбокса
+    function checkboxGroupCheck(checkbox) {
+      var group = checkbox.closest('[data-js-check-section]');
+      var mainCheckbox = group.querySelectorAll('[data-js-main-checkbox]');
+      var ruleCheckboxes = group.querySelectorAll('[data-js-rule-checkbox]');
+      var successClass = ruleCheckboxes[0].closest('[data-js-panel-parent]').getAttribute('data-js-success-class');
+      var errorClass = ruleCheckboxes[0].closest('[data-js-panel-parent]').getAttribute('data-js-error-class');
+      var needCheckGroup = false; // флаг отметки группы снят
+      for (var ruleCheckbox in ruleCheckboxes) {
+        if (ruleCheckboxes[ruleCheckbox].checked) {
+          needCheckGroup = true;
+          break;
+        }
+      }
+      if (needCheckGroup) {
+        mainCheckbox[0].checked = true;
+      }
+      else {
+        mainCheckbox[0].checked = false;
+        for (ruleCheckbox in ruleCheckboxes) {
+          // только если эта часть объекта сама является объектом )))
+          if(typeof ruleCheckboxes[ruleCheckbox] === 'object') {
+            ruleCheckboxes[ruleCheckbox].closest('[data-js-panel-parent]').classList.remove(successClass, errorClass);
+          }
+        }
+      }
+      return needCheckGroup;
+    }
 
     // Парсит get.
     // Вернет объект или false
@@ -84,6 +149,7 @@
     }
 
     // Вернет ближайшего родителя по CSS-селектору
+    // Ждет селектор искомого родителя
     // var parent = child.closest(parentSelector)
     (function(e){
      e.closest = e.closest || function(css){
@@ -204,76 +270,36 @@
     <section class="check-section" data-js-check-section>
 
       <label class="check-section__heading">
-        <input class="check-section__heading-checkbox" type="checkbox" name="r0">
+        <input class="check-section__heading-checkbox" type="checkbox" name="r0" data-js-main-checkbox>
         <h2 class="check-section__heading-text">Секция правилСекция правилСекция правилСекция правилСекция правилСекция правилСекция правилСекция правил</h2>
       </label>
 
-      <section class="panel  panel--collapse  check-section__item">
+      <section class="panel  panel--collapse  check-section__item" data-js-panel-parent data-js-panel-collapse-class="panel--collapse" data-js-success-class="panel--success" data-js-error-class="panel--error">
         <header class="panel__header">
           <label class="panel__title">
-            <input class="panel__checkbox" type="checkbox" name="r1">
+            <input class="panel__checkbox" type="checkbox" name="r1" data-js-rule-checkbox>
             <h3 class="panel__title-text">Какое-то правило</h3>
           </label>
-          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-pct>Подробнее</button></span>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
           <p>111</p>
         </div>
       </section>
 
-      <section class="panel  panel--accent  check-section__item">
+      <section class="panel  panel--accent  check-section__item" data-js-panel-parent data-js-panel-collapse-class="panel--collapse" data-js-success-class="panel--success" data-js-error-class="panel--error">
         <header class="panel__header">
           <label class="panel__title">
-            <input class="panel__checkbox" type="checkbox" name="r2">
+            <input class="panel__checkbox" type="checkbox" name="r2" data-js-rule-checkbox>
             <h3 class="panel__title-text">Какое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правило</h3>
           </label>
-          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-pct>Подробнее</button></span>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
           <p>Какое-то пояснение</p>
           <pre>
             <code>&lt;div class=&quot;foo&quot;&gt;</code>
             <code>  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;</code>
-            <code>&lt;/div&gt;</code>
-          </pre>
-        </div>
-      </section>
-
-    </section>
-
-    <section class="check-section" data-js-check-section>
-
-      <label class="check-section__heading">
-        <input class="check-section__heading-checkbox" type="checkbox" name="c0">
-        <h2 class="check-section__heading-text">Секция правил</h2>
-      </label>
-
-      <section class="panel  panel--collapse  check-section__item">
-        <header class="panel__header">
-          <label class="panel__title">
-            <input class="panel__checkbox" type="checkbox" name="c1">
-            <h3 class="panel__title-text">Какое-то правило</h3>
-          </label>
-          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-pct>Подробнее</button></span>
-        </header>
-        <div class="panel__body">
-          <p>111</p>
-        </div>
-      </section>
-
-      <section class="panel  panel--accent  check-section__item">
-        <header class="panel__header">
-          <label class="panel__title">
-            <input class="panel__checkbox" type="checkbox" name="c2">
-            <h3 class="panel__title-text">Какое-то правило</h3>
-          </label>
-          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-pct>Подробнее</button></span>
-        </header>
-        <div class="panel__body">
-          <p>Какое-то пояснение</p>
-          <pre>
-            <code>&lt;div class=&quot;foo&quot;&gt;</code>
-            <code>  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;</code>
             <code>&lt;/div&gt;</code>
           </pre>
         </div>
