@@ -620,7 +620,7 @@ textarea.form-field__text-input {
   border-color: #e28686;
 }
 .panel--error .panel__header {
-  border-bottom: 1px solid #e28686;
+  border-bottom-color: #e28686;
   color: #333333;
   background-color: #ffbaba;
 }
@@ -628,7 +628,7 @@ textarea.form-field__text-input {
   border-color: #99D499;
 }
 .panel--success .panel__header {
-  border-bottom: 1px solid #99D499;
+  border-bottom-color: #99D499;
   color: #333333;
   background-color: #AEEEAE;
 }
