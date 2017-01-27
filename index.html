@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Критерии верстки</title>
+  <title>Проверка вёрстки</title>
   <link rel="stylesheet" href="style.css">
+  <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAGABoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAugwAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAugwAugwAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAugwAugwAugwAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAugwAugwAugwAugwAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAugwAugwAugwAugwAugwAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAugwAugwAugwAugwAugwAugwAALoAALoAALoAALoAALoAALoAALoAALoAALoAALoAugwAugwAugwAugwAugwAugwAugwAALoAALoAALoAALoAALoAALoAALoAALoAALoAugwAugwAugwAugwAugwAugwAugwAugwAALoAALoAALoAALoAALoAALoAALoAALoAugwAugwAugwAugwAugwAugwAugwAugwAugwAALoAALoAALoAALoAALoAALoAALoAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAALoAALoAALoAALoAALoAALoAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAALoAALoAALoAALoAALoAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAALoAALoAALoAALoAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAALoAALoAALoAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAALoAALoAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAugwAALoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPCEtLQokKCdib2R5JykuZXEoMCkuY3NzKCd3aWR0aCcpCi0tPgo=" rel="icon" type="image/x-icon">
   <script>
 
     // В идеале, наверное, нужно создать какой-то глобальный объект с древовидной структурой
@@ -15,7 +16,7 @@
     // Отправка формы → измнение URL (добавляется get) → показ get в поле ссылки на отзыв
     // и обработка этого get для показа на странице.
 
-    // да-да, это ГЛОБАЛЬНАЯ переменная, я знаю что делаю
+    // да-да, это ГЛОБАЛЬНАЯ переменная, я знаю что делаю. ВЖУХ!
     var codeReviewGET = parseGETParameters();
 
     // Добавим на html флаг работающего JS
@@ -63,6 +64,16 @@
           checkboxParentClassMaker(checkbox);
         });
 
+        // Получим и вставим в страницу % соблюденных обязательных критериев
+        var mandatoryPercentText = getCriteriaPercentage( document.querySelectorAll('[data-js-check-mandatory] [data-js-rule-checkbox]') ) + '%';
+        document.getElementById('mandatory-progress').setAttribute('data-percent', mandatoryPercentText)
+        document.getElementById('mandatory-progress-bar').setAttribute('style', 'width:' +mandatoryPercentText)
+
+        // Получим и вставим в страницу % соблюденных НЕобязательных критериев
+        var optionalPercentText = getCriteriaPercentage( document.querySelectorAll('[data-js-check-optional] [data-js-rule-checkbox]') ) + '%';
+        document.getElementById('optional-progress').setAttribute('data-percent', optionalPercentText)
+        document.getElementById('optional-progress-bar').setAttribute('style', 'width:' +optionalPercentText)
+
       }
 
       // По любому изменению в полях формы опустошаем поле ссылки на этот ревью
@@ -94,7 +105,15 @@
 
     });
 
-    // TODO: вынести в функцию подсчет процента соблюдённых обязательных критериев
+    // Возвращает процент соблюденных критерием
+    // Ждет nodeList чекбоксов, для которых нужно считать процент отмеченных
+    function getCriteriaPercentage(checkboxesNodeList) {
+      var checkedCheckboxes = 0;
+      checkboxesNodeList.forEach(function(checkbox, i) {
+        if (checkbox.checked === true) checkedCheckboxes++;
+      });
+      return Math.round(checkedCheckboxes * 100 / checkboxesNodeList.length);
+    }
 
     // Добавляет/снимает классы на панели-родителе чекбокса
     // Ждет чекбокс, родитель которого проверяется
@@ -156,45 +175,7 @@
   </div>
 
   <div class="container  loading-page"  data-text="Загружается" style="display:none;">
-    <svg class="" width="64" height="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-default">
-      <path fill="none" class="bk" d="M0 0h100v100H0z"/>
-      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="translate(0 -30)">
-        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(30 105.98 65)">
-        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.083s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(60 75.98 65)">
-        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.16s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(90 65 65)">
-        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.25s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(120 58.66 65)">
-        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.33s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(150 54.02 65)">
-        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.416s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(180 50 65)">
-        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.5s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(-150 45.98 65)">
-        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.583s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(-120 41.34 65)">
-        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.6s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(-90 35 65)">
-        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.75s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(-60 24.02 65)">
-        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.833s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="46.5" y="40" width="7" height="20" rx="5" ry="5" fill="#00b2ff" transform="rotate(-30 -5.98 65)">
-        <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0.916s" repeatCount="indefinite"/>
-      </rect>
-    </svg>
+    <span class="loading"></span>
   </div>
 
   <form class="container  main-content" action="" style="display:none;">
@@ -204,11 +185,11 @@
         <h2 class="panel__title">Об этом код-ревью</h2>
       </header>
       <div class="panel__body">
-        <div id="mandatory-progress-bar" class="progress__container" data-text="Обязательные критерии:" data-percent="0%">
-          <span class="progress__bar  progress__bar--mandatory" style="width:0%;"></span>
+        <div id="mandatory-progress" class="progress" data-text="Обязательные критерии:" data-percent="0%">
+          <span id="mandatory-progress-bar" class="progress__bar  progress__bar--mandatory" style="width:0%;"></span>
         </div>
-        <div id="optional-progress-bar" class="progress__container" data-text="Необязательные критерии:" data-percent="90%" style="display: none;">
-          <span class="progress__bar  progress__bar--optional" style="width:90%;"></span>
+        <div id="optional-progress" class="progress" data-text="Необязательные критерии:" data-percent="0%">
+          <span id="optional-progress-bar" class="progress__bar  progress__bar--optional" style="width:0%;"></span>
         </div>
         <div class="pseudoform">
           <div class="form-field  form-review-link">
@@ -245,14 +226,14 @@
       </div>
     </section>
 
-    <section class="check-section" data-js-check-section>
+    <section class="check-section"  data-js-check-section  data-js-check-mandatory>
 
       <h2 class="check-section__header">
         Секция правил 1
         <span class="label  label--font-size-content">Обязательно</span>
       </h2>
 
-      <section class="panel  panel--collapse  check-section__item" data-js-panel-parent data-js-panel-collapse-class="panel--collapse" data-js-success-class="panel--success" data-js-error-class="panel--error">
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="r1" data-js-rule-checkbox>
@@ -265,7 +246,7 @@
         </div>
       </section>
 
-      <section class="panel  panel--collapse  panel--accent  check-section__item" data-js-panel-parent data-js-panel-collapse-class="panel--collapse" data-js-success-class="panel--success" data-js-error-class="panel--error">
+      <section class="panel  panel--collapse  panel--accent  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="r2" data-js-rule-checkbox>
@@ -285,14 +266,14 @@
 
     </section>
 
-    <section class="check-section" data-js-check-section>
+    <section class="check-section"  data-js-check-section  data-js-check-mandatory>
 
     <h2 class="check-section__header">
       Секция правил 2
       <span class="label  label--font-size-content">Обязательно</span>
     </h2>
 
-      <section class="panel  panel--collapse  check-section__item" data-js-panel-parent data-js-panel-collapse-class="panel--collapse" data-js-success-class="panel--success" data-js-error-class="panel--error">
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="c1" data-js-rule-checkbox>
@@ -305,7 +286,7 @@
         </div>
       </section>
 
-      <section class="panel  panel--collapse  panel--accent  check-section__item" data-js-panel-parent data-js-panel-collapse-class="panel--collapse" data-js-success-class="panel--success" data-js-error-class="panel--error">
+      <section class="panel  panel--collapse  panel--accent  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="c2" data-js-rule-checkbox>
@@ -325,9 +306,50 @@
 
     </section>
 
+    <section class="check-section"  data-js-check-section  data-js-check-optional>
+
+    <h2 class="check-section__header">
+      Секция правил 3
+      <span class="label  label--info  label--font-size-content">Необязательно</span>
+    </h2>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="n1" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Какое-то правило 1</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>111</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  panel--accent  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="n2" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Какое-то правило 2</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Какое-то пояснение</p>
+          <pre>
+            <code>&lt;div class=&quot;foo&quot;&gt;</code>
+            <code>  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;</code>
+            <code>&lt;/div&gt;</code>
+          </pre>
+        </div>
+      </section>
+
+    </section>
+
     <div class="main-nav">
       <div class="container  main-nav__inner">
         <ul class="main-nav__list">
+          <li><a href="index.html">Новая проверка</a></li>
           <li><a href="https://github.com/nicothin/criteria-of-quality-frontend">Репозиторий проекта</a></li>
         </ul>
         <button class="btn  btn--accent  main-nav__send-btn">Готово</button>
@@ -337,7 +359,7 @@
   </form>
 
   <footer class="page-footer  container">
-    <p>© Николай Громов</p>
+    <p>© <a href="http://nicothin.pro">Николай Громов</a>. С любовью к вёрстке. <iframe class="github-star-counter" src="https://ghbtns.com/github-btn.html?user=nicothin&repo=criteria-of-quality-frontend&type=star&count=true&size=small" frameborder="0" scrolling="0" width="100px" height="20px"></iframe></p>
   </footer>
 
 </body>

@@ -709,6 +709,9 @@ textarea.form-field__text-input {
 .label--danger {
   background-color: #d9534f;
 }
+.label--info {
+  background-color: #5BC0DE;
+}
 .label--font-size-content {
   font-size: 14px;
 }
@@ -725,7 +728,8 @@ textarea.form-field__text-input {
 //  Прогресс
 //----------------------------------------------------------------------------*/
 
-.progress__container {
+.progress {
+  display: none;
   position: relative;
   overflow: hidden;
   height: 30px;
@@ -738,7 +742,10 @@ textarea.form-field__text-input {
   background-position: 0 100%;
   background-size: 100% 100%;
 }
-.progress__container:before {
+.has-get .progress {
+  display: block;
+}
+.progress:before {
   display: block;
   position: absolute;
   top: 0;
@@ -822,13 +829,31 @@ textarea.form-field__text-input {
 }
 
 .loading-page {
-  display: block !important;
+  display: inline-block !important;
   text-align: center;
 }
 .loading-page:after {
   display: block;
   padding: 5px 0 20px;
   content: attr(data-text);
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading {
+  display: block;
+  margin: auto;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  border: .25rem solid #000;
+  border-top-color: transparent;
+  animation: spin 1s infinite linear;
 }
 
 .js .no-js-msg {
@@ -887,4 +912,7 @@ textarea.form-field__text-input {
 }
 .main-nav__send-btn {
   margin-left: auto;
+}
+.github-star-counter {
+  vertical-align: middle;
 }
