@@ -12,6 +12,9 @@
     // и обработкой по модификации этого объекта, после чего заниматься только модификацией
     // и чтобы после этого ВЖУХ!!!!11 Но, пока — так, как написано ниже, немного по-азербайджански.
 
+    // Отправка формы → измнение URL (добавляется get) → показ get в поле ссылки на отзыв
+    // и обработка этого get для показа на странице.
+
     // да-да, это ГЛОБАЛЬНАЯ переменная, я знаю что делаю
     var codeReviewGET = parseGETParameters();
 
@@ -24,6 +27,9 @@
       // Добавим на html флаг загрузки страницы
       document.documentElement.classList.add('dom-content-loaded');
 
+      // Поле ссылки на этот код-ревью
+      var fieldReviewURL = document.getElementById('review-link');
+
       // Если пришел GET
       if (codeReviewGET) {
 
@@ -31,7 +37,6 @@
         document.documentElement.classList.add('has-get');
 
         // Заполним общие поля формы
-        var fieldReviewURL = document.getElementById('review-link');
         fieldReviewURL.value = location.href;
         // По фокусу на поле URL будем выделять в нем текст
         fieldReviewURL.addEventListener('focus', function() {
@@ -42,7 +47,12 @@
         document.getElementById('review-msg').value = decodeURI(codeReviewGET.comm).replace( /\+/g, ' ' );
 
         // Поставим фокус в поле с адресом этого обзора
-        fieldReviewURL.focus();
+        // fieldReviewURL.focus();
+
+        // По фокусу на поле с адресом скопируем его в буфер
+        fieldReviewURL.onfocus = function () {
+          document.execCommand('copy');
+        }
 
         // Пройдем всем (для групп и для правил) чекбоксам, отметим пришедшие в get
         document.querySelectorAll('[data-js-main-checkbox], [data-js-rule-checkbox]').forEach(function(checkbox, i) {
@@ -59,6 +69,16 @@
         });
 
       }
+
+      // По любому изменению в полях формы опустошаем поле ссылки на этот ревью
+      document.addEventListener('change', function(event) {
+        fieldReviewURL.value = '';
+      });
+      document.addEventListener('keydown', function(event) {
+        var formComponent = event.target;
+        console.log(formComponent);
+        if (formComponent.classList.contains('form-field__text-input')) fieldReviewURL.value = '';
+      });
 
       // При изменении группового чекбокса
       document.addEventListener('change', function(event) {
@@ -231,7 +251,7 @@
           <div class="form-field  form-review-link">
             <label class="form-field__label">
               <span class="form-field__name">Ссылка на этот код-ревью</span>
-              <textarea id="review-link" class="form-field__text-input" rows="3"></textarea>
+              <textarea id="review-link" class="form-field__text-input" rows="3" placeholder="Ссылка появится после нажатия кнопки «Готово». &#10;Дайте фокус этом полю для копирования его содержимого в буфер"></textarea>
             </label>
           </div>
           <div class="row">
@@ -246,8 +266,8 @@
             <div class="col-sm-6  col-md-8">
               <div class="form-field">
                 <label class="form-field__label">
-                  <span class="form-field__name">Проверяемый URL</span>
-                  <input id="review-url" class="form-field__text-input" type="url" placeholder="https://github.com..." name="url">
+                  <span class="form-field__name">Проверяемый проект, URL или файл</span>
+                  <input id="review-url" class="form-field__text-input" type="text" placeholder="https://github.com..." name="url">
                 </label>
               </div>
             </div>
