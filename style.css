@@ -634,6 +634,14 @@ textarea.form-field__text-input {
   color: #fff;
   background-color: #d9534f;
 }
+.panel--error .panel__header a {
+  color: #fff;
+  text-decoration: underline;
+}
+.panel--error .panel__header a:hover,
+.panel--error .panel__header a:focus {
+  text-decoration: none;
+}
 .panel--success {
   border-color: #99D499;
 }
