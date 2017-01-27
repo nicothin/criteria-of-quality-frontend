@@ -803,17 +803,9 @@ textarea.form-field__text-input {
   z-index: -1;
 }
 
-.check-section__heading {
-  display: flex;
-  align-items: baseline;
-  padding-left: 15px;
-  margin-bottom: 10px;
-}
-.check-section__heading-text {
-  margin-left: 15px;
-}
-.check-section__heading-checkbox {
-  flex-shrink: 0;
+.check-section__header {
+  padding: 0 15px;
+  margin: 1.6em 0 1em;
 }
 
 .loading-page {

@@ -54,18 +54,13 @@
           document.execCommand('copy');
         }
 
-        // Пройдем всем (для групп и для правил) чекбоксам, отметим пришедшие в get
-        document.querySelectorAll('[data-js-main-checkbox], [data-js-rule-checkbox]').forEach(function(checkbox, i) {
-          if (checkbox.name && codeReviewGET[checkbox.name]) checkbox.checked = true;
-        });
-
-        // Пройдем по группам с отмеченными общими чекбоксами, расставим внутренним панелям классы
-        document.querySelectorAll('[data-js-check-section]').forEach(function(group, i) {
-          if (group.querySelector('[data-js-main-checkbox]').checked === true) {
-            group.querySelectorAll('[data-js-rule-checkbox]').forEach(function(checkbox, i) {
-              checkboxParentClassMaker(checkbox);
-            });
+        // Пройдем всем чекбоксам, отметим пришедшие в get
+        document.querySelectorAll('[data-js-rule-checkbox]').forEach(function(checkbox, i) {
+          if (codeReviewGET[checkbox.name]) {
+            checkbox.checked = true;
           }
+          else {}
+          checkboxParentClassMaker(checkbox);
         });
 
       }
@@ -80,43 +75,11 @@
         if (formComponent.classList.contains('form-field__text-input')) fieldReviewURL.value = '';
       });
 
-      // При изменении группового чекбокса
+      // При изменении чекбокса правила
       document.addEventListener('change', function(event) {
-        var groupCheckbox = event.target;
-        if (groupCheckbox.attributes['data-js-main-checkbox']) {
-          var ruleCheckboxes = groupCheckbox.closest('[data-js-check-section]').querySelectorAll('[data-js-rule-checkbox]');
-          // - если был проставлен, добавлять всем внутренним панелям классы
-          if (groupCheckbox.checked === true) {
-            ruleCheckboxes.forEach(function(checkbox, i) {
-              checkboxParentClassMaker(checkbox);
-            });
-          }
-          // - если был убран, снять все внутренние, убрать всем внутренним панелям классы
-          else {
-            ruleCheckboxes.forEach(function(checkbox, i) {
-              checkbox.checked = false;
-              var checkboxParent = checkbox.closest('[data-js-panel-parent]');
-              var successClass = checkboxParent.getAttribute('data-js-success-class');
-              var errorClass = checkboxParent.getAttribute('data-js-error-class');
-              checkboxParent.classList.remove(successClass, errorClass);
-            });
-          }
-        }
-      });
-
-      // При изменении внутреннего чекбокса
-      document.addEventListener('change', function(event) {
-        var ruleCheckbox = event.target;
-        if (ruleCheckbox.attributes['data-js-rule-checkbox']) {
-          checkboxParentClassMaker(ruleCheckbox);
-          // - если этот внутренний чекбокс отмечен, отметим и общий текбокс группы и проставм панелям классы
-          if (ruleCheckbox.checked === true) {
-            var group = ruleCheckbox.closest('[data-js-check-section]');
-            group.querySelector('[data-js-main-checkbox]').checked = true;
-            group.querySelectorAll('[data-js-rule-checkbox]').forEach(function(checkbox, i) {
-              checkboxParentClassMaker(checkbox);
-            });
-          }
+        var checkbox = event.target;
+        if (checkbox.attributes['data-js-rule-checkbox']) {
+          checkboxParentClassMaker(checkbox);
         }
       });
 
@@ -284,13 +247,10 @@
 
     <section class="check-section" data-js-check-section>
 
-      <label class="check-section__heading">
-        <input class="check-section__heading-checkbox" type="checkbox" name="sect-r" data-js-main-checkbox>
-        <h2 class="check-section__heading-text" title="Если чекбокс стоит, эта группа правил проверялась">
-          Секция правилСекция правилСекция правилСекция правилСекция правилСекция правилСекция правилСекция правил
-          <br><span class="label  label--header">Обязательно для Базового</span>
-        </h2>
-      </label>
+      <h2 class="check-section__header">
+        Секция правил 1
+        <span class="label  label--header">Обязательно</span>
+      </h2>
 
       <section class="panel  panel--collapse  check-section__item" data-js-panel-parent data-js-panel-collapse-class="panel--collapse" data-js-success-class="panel--success" data-js-error-class="panel--error">
         <header class="panel__header">
@@ -327,13 +287,10 @@
 
     <section class="check-section" data-js-check-section>
 
-      <label class="check-section__heading">
-        <input class="check-section__heading-checkbox" type="checkbox" name="sect-c" data-js-main-checkbox>
-        <h2 class="check-section__heading-text" title="Если чекбокс стоит, эта группа правил проверялась">
-          Секция правил 2
-          <br><span class="label  label--header">Обязательно для Базового</span> <span class="label  label--header  label--info">Обязательно для ПРО</span> <span class="label  label--header  label--danger">Лейбл</span> <span class="label  label--header  label--success">Лейбл</span>
-        </h2>
-      </label>
+    <h2 class="check-section__header">
+      Секция правил 2
+      <span class="label  label--header">Обязательно</span>
+    </h2>
 
       <section class="panel  panel--collapse  check-section__item" data-js-panel-parent data-js-panel-collapse-class="panel--collapse" data-js-success-class="panel--success" data-js-error-class="panel--error">
         <header class="panel__header">
