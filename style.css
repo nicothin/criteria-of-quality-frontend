@@ -375,33 +375,45 @@ textarea.form-field__text-input {
 }
 
 .btn {
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.btn:focus {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-color: #8c8c8c;
+}
+.btn:hover {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.btn:active  {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+.btn--accent {
   color: #fff;
   background-color: #337ab7;
   border-color: #2e6da4;
 }
-.btn:focus {
+.btn--accent:focus {
   color: #fff;
   background-color: #286090;
   border-color: #122b40;
 }
-.btn:hover {
+.btn--accent:hover {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
-.btn:active {
+.btn--accent:active {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
-}
-.btn:active:hover {
-  color: #fff;
-  background-color: #204d74;
-  border-color: #122b40;
-}
-.btn__small {
-  display: block;
-  font-size: 0.8em;
 }
 
 
