@@ -4,7 +4,8 @@
   "description": "Обязательные и необязательные критерии оценки вёрстки.",
   "main": "index.js",
   "scripts": {
-    "test": "yaspeller -e \".md,.html,.css\" . && eclint check docs/*"
+    "test": "yaspeller -e \".md,.html,.css\" . && eclint check docs/*",
+    "precommit": "npm test"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/nicothin/criteria-of-quality-frontend#readme",
   "devDependencies": {
     "eclint": "^1.1.5",
+    "husky": "^0.13.1",
     "yaspeller": "^3.0.0"
   }
 }
