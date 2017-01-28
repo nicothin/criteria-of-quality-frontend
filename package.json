@@ -1,0 +1,23 @@
+{
+  "name": "criteria-of-quality-frontend",
+  "version": "1.0.0",
+  "description": "Обязательные и необязательные критерии оценки вёрстки.",
+  "main": "index.js",
+  "scripts": {
+    "test": "yaspeller -e \".md,.html,.css\" ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicothin/criteria-of-quality-frontend.git"
+  },
+  "keywords": [],
+  "author": "Nikolay Gromov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicothin/criteria-of-quality-frontend/issues"
+  },
+  "homepage": "https://github.com/nicothin/criteria-of-quality-frontend#readme",
+  "devDependencies": {
+    "yaspeller": "^3.0.0"
+  }
+}
