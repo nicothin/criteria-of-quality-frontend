@@ -84,11 +84,11 @@ h1 {
   }
 }
 h2 {
-  font-size: 18px;
+  font-size: 22px;
 }
 @media (min-width: 1024px) {
   h2 {
-    font-size: 24px;
+    font-size: 30px;
   }
 }
 h3 {
@@ -923,4 +923,10 @@ textarea.form-field__text-input {
 }
 .github-star-counter {
   vertical-align: middle;
+}
+
+.page-footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
 }

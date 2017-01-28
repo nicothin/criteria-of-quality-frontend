@@ -229,7 +229,7 @@
     <section class="check-section"  data-js-check-section  data-js-check-mandatory>
 
       <h2 class="check-section__header">
-        Секция правил 1
+        Разметка
         <span class="label  label--font-size-content">Обязательно</span>
       </h2>
 
@@ -237,30 +237,374 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="r1" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Какое-то правило <a href="">link</a></h3>
+            <h3 class="panel__title-text">Соблюден <a href="https://epixx.github.io/code-guide/#html">код-гайд</a></h3>
           </label>
-          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
-        <div class="panel__body">
-          <p>111</p>
-        </div>
+        <div class="panel__body"></div>
       </section>
 
-      <section class="panel  panel--collapse  panel--accent  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="r2" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Какое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правилоКакое-то правило</h3>
+            <h3 class="panel__title-text">Разметка проходит валидацию на  <a href="https://validator.w3.org/nu/">validator.w3.org/nu</a></h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
-          <p>Какое-то пояснение</p>
+          <p>Проверяются все сверстанные страницы.</p>
+          <p>Проверке подвергается и логическая структура документа (флаг <code>Show Outline</code> при проверке). Допустим «безымянный» блок для <code>&lt;nav&gt;</code>.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r3" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Отсутствуют грубые ошибки</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Примеры грубых ошибок: ссылки не являются ссылками, <code>&lt;br&gt;&lt;br&gt;</code> вместо параграфов.</p>
+          <p>Примеры негрубых (условно-допустимых) ошибок: <code>&lt;div&gt;</code> вместо <code>&lt;section&gt;</code>, <code>&lt;header&gt;</code> или <code>&lt;article&gt;</code>, отсутствие списка в одноуровневой навигации.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r4" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Страница работоспособна без картинок, стилей и скриптов</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Страница без стилей и скриптов, будучи открыта в браузере, выглядит логично и работает, а именно:</p>
+          <ul>
+            <li>видна чёткая иерархия блоков (заголовки),</li>
+            <li>важные для восприятия контента страницы изображения вставлены тегом <code>img</code>,</li>
+            <li>оформительские картинки вставлены через CSS (SVG-иконки можно вставлять c помощью <code>&lt;svg&gt;</code>),</li>
+            <li>ссылки, представленные в дизайне иконками, имеют человекопонятные текстовые узлы (текст скрывается стилями),</li>
+            <li>не видны элементы, ненужные или не работающие без стилей и скриптов (пример: бургер главного меню),</li>
+            <li>интерактивные элементы (ссылки, в т.ч. якорные, формы) видны и работоспособны,</li>
+            <li>«кнопки», клики на которых открывают поп-апы, являются ссылками, ведущими к блокам с поп-апами (якоря) или ссылками на другие страницы,</li>
+            <li>интерактивная карта при отключенном JS показывается в виде статической картинки.</li>
+          </ul>
+          <p><strong>Исключение:</strong> страницы, работоспособность которых невозможна без стилей/скриптов.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r5" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Использована методология БЭМ, отсутствуют типовые ошибки</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>CSS-классы, использованные в разметке, написаны по БЭМ (<a href="https://ru.bem.info/methodology/quick-start/">Описание методологии</a>). Предпочтительным является использование <a href="https://ru.bem.info/methodology/naming-convention/#%D0%A1%D1%82%D0%B8%D0%BB%D1%8C-two-dashes">диалекта Two Dashes</a> (<code>__</code> как разделитель для элемента и <code>--</code> как разделитель для модификатора).</p>
+          <p>Типовые ошибки:</p>
+          <ul>
+            <li>повторение разделителя более одного раза в одном классе: <code>block__element__element</code> или <code>block--modifier--modifier</code>,</li>
+            <li>класс-модификатор без класса, который он модифицирует: <code>&lt;div class="block--modifier"&gt;</code> или <code>&lt;div class="btn  toggler--red"&gt;</code>,</li>
+            <li>упоминание внешнего вида блока или элемента в классах, не являющихся модификаторами,</li>
+            <li>избыточные сокращения в именах классов (допустимые: <code>img</code>, <code>descr</code>, <code>btn</code>, <code>wrap</code>, <code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>),</li>
+            <li>наличие классов-хелперов, наподобие <code>right</code>, <code>text-center</code>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r6" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Использован правильный вьюпорт-тег</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Для адаптивных сайтов: <code>&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;</code></p>
+          <p>Для неадаптивных сайтов: <code>&lt;meta name="viewport" content="width=1000"&gt;</code> (число — контентная ширина макета).</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r7" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Отсутствуют закомментированные блоки</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p><strong>Исключения:</strong> особые состояния блоков (пример: блок авторизации для авторизованного посетителя).</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r8" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Для контентных изображений прописаны атрибуты размеров</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Допустимо указывать размеры в пикселях или процентах.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r9" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Для ссылок прописаны правильные протоколы</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Для ссылок на адрес электропочты — <code>mailto:</code>, для телефонов — <code>tel:</code>, для skype — <code>skype:</code>.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r10" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Для <code>&lt;input&gt;</code> использованы правильные типы</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p><code>email</code>, <code>tel</code>, <code>date</code> и подобные.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r11" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Если у <code>&lt;input&gt;</code> или <code>&lt;textarea&gt;</code> есть текстовое название, оно указано в привязанном <code>&lt;label&gt;</code></h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
           <pre>
-            <code>&lt;div class=&quot;foo&quot;&gt;</code>
-            <code>  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;</code>
+            <code>&lt;label class="field-text"&gt;</code>
+            <code>  &lt;span class="field-text__name"&gt;Название поля &lt;/span&gt;</code>
+            <code>  &lt;input class="field-text__input" type="text" value="" placeholder="Образец заполнения"&gt;</code>
+            <code>&lt;/label&gt;</code>
+            <code> </code>
+            <code>&lt;!-- или --&gt;</code>
+            <code>&lt;div class="field-text"&gt;</code>
+            <code>  &lt;label for="input-id" class="field-text__name"&gt;Название поля &lt;/label&gt;</code>
+            <code>  &lt;input id="input-id" class="field-text__input" type="text" value="" placeholder="Образец заполнения"&gt;</code>
             <code>&lt;/div&gt;</code>
           </pre>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r12" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Табличные данные представлены в <code>&lt;table&gt;</code></h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p><strong>Исключение:</strong> некоторые адаптивные таблицы.</p>
+        </div>
+      </section>
+
+
+
+    </section>
+
+    <section class="check-section"  data-js-check-section  data-js-check-mandatory>
+
+      <h2 class="check-section__header">
+        Стилизация
+        <span class="label  label--font-size-content">Обязательно</span>
+      </h2>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s1" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Соблюден <a href="https://epixx.github.io/code-guide/#css">код-гайд</a></h3>
+          </label>
+        </header>
+        <div class="panel__body"></div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s2" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Отклонения от макета минимальны</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>На прорисованных ширинах вертикальные отклонения не должны превышать 10px (но не более 5%). Горизонтальные отклонения не должны превышать 5px.</p>
+          <p><strong>Исключение:</strong> ширины блоков, формирующих раскладку блоков на странице должны точно совпадать с макетом.</p>
+          <p>Недопустимы отклонения по параметрам текста, цветам, контентным изображениям.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s3" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Шрифты заданы правильно</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>При указании названия шрифта в <code>font-family</code> должны быть указаны альтернативные семейства и тип семейства.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s4" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Отсутствуют «CSS-заплатки»</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>В стилях не должно быть <code>!important</code>.</p>
+          <p>На <code>&lt;body&gt;</code> или иных общих обёртках страницы не должно быть <code>overflow[-x||-y]: hidden;</code>.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s5" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Фрагменты страницы выдерживают переполнение и недополнение</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Простые фрагменты верстки должны выдерживать переполнение текстом (увеличение габаритов и/или сокрытие части длинного текста). При этом внутри кнопок или ячеек таблицы текст не должен начинать касаться краёв.</p>
+          <p>Фрагменты, содержащие потоковые блоки (пример: блок каталога товаров, содержащий поток вложенных блоков с товарами), должны выдерживать переполнение и недополнение потоковыми блоками.</p>
+          <p>Вставка в разметку контентных изображений с размерами, отличающимися от представленных в макете, не должно ломать страницу.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s6" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Использован подход mobile-first</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>При стилизации компонентов страницы, сначала написана стилизация под мобильные устройства, затем дописаны стили для широких вьюпортов. <strong>Исключение:</strong> фрагменты страницы, имеющие сильные отличия на широких вьюпортах.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s7" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Для стилизации не использованы <code>id</code></h3>
+          </label>
+        </header>
+        <div class="panel__body"></div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s8" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Для фрагментов с изображением в фоне явно прописан фоновый цвет</h3>
+          </label>
+        </header>
+        <div class="panel__body"></div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s9" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Отступы между блоками сделаны свойствами соседствующих блоков, а не выступающими <code>margin</code>-ами вложенных блоков</h3>
+          </label>
+        </header>
+        <div class="panel__body"></div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s10" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Для раскладки блоков на странице не использованы стилизованный <code>&lt;table&gt;</code> и <code>position: absolute;</code></h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p><strong>Исключение:</strong> <code>position: absolute;</code> можно использовать для отдельных непереполняемых блоков (пример: бургер меню в мобильной версии).</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s11" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Изменение размеров textarea не ломает вёрстку</h3>
+          </label>
+        </header>
+        <div class="panel__body"></div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s12" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Контентные изображения не должны работать как «распорки»</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Должшы быть правила:</p>
+          <pre>
+            <code>img {</code>
+            <code>  max-width: 100%;</code>
+            <code>  height: auto;</code>
+            <code>}</code>
+          </pre>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s13" data-js-rule-checkbox>
+            <h3 class="panel__title-text">У отдельных блоков нет жестко фиксированных размеров</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Для любых блоков (кроме блоков, служащих для раскладки на странице) не должно быть жесткой фиксации ширины и высоты (могут быть заданы минимальные размеры).</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="s14" data-js-rule-checkbox>
+            <h3 class="panel__title-text">В коде отсутствуют неиспользуемые в разметке селекторы</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p><strong>Исключение:</strong> стилизация фрагментов страницы, видимых не сразу или не всем (пример: стили для авторизованного посетителя).</p>
         </div>
       </section>
 
@@ -268,37 +612,450 @@
 
     <section class="check-section"  data-js-check-section  data-js-check-mandatory>
 
-    <h2 class="check-section__header">
-      Секция правил 2
-      <span class="label  label--font-size-content">Обязательно</span>
-    </h2>
+      <h2 class="check-section__header">
+        CSS-процессинг
+        <span class="label  label--font-size-content">Обязательно</span>
+      </h2>
 
       <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
         <header class="panel__header">
           <label class="panel__title">
-            <input class="panel__checkbox" type="checkbox" name="c1" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Какое-то правило 1</h3>
+            <input class="panel__checkbox" type="checkbox" name="sl1" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Стилевые файлы разделены поблочно</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
-          <p>111</p>
+          <p>Один бэм-блок = один препроцессорный файл. Пример: внутри файла <code>promo.less</code> должна быть только стилизация бэм-блока <code>promo</code>.</p>
         </div>
       </section>
 
-      <section class="panel  panel--collapse  panel--accent  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
         <header class="panel__header">
           <label class="panel__title">
-            <input class="panel__checkbox" type="checkbox" name="c2" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Какое-то правило 2</h3>
+            <input class="panel__checkbox" type="checkbox" name="sl2" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Нет вложенных селекторов глубже 3-го уровня</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
-          <p>Какое-то пояснение</p>
+          <p>Псевдоселекторы и <code>@media</code> не считаются увеличивающими уровень вложенности.</p>
           <pre>
-            <code>&lt;div class=&quot;foo&quot;&gt;</code>
-            <code>  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;</code>
+            <code>.promo {</code>
+            <code>  display: block;</code>
+            <code> </code>
+            <code>  &__link {         // первый уровень вложенности</code>
+            <code> </code>
+            <code>    &:hover {       // не увеличивает уровень вложенности</code>
+            <code> </code>
+            <code>      span {...}    // второй уровень вложенности</code>
+            <code>    }</code>
+            <code> </code>
+            <code>    strong {...}   // второй уровень вложенности</code>
+            <code>  }</code>
+            <code> </code>
+            <code>  @media (min-width: $screen-sm) { // не увеличивает уровень вложенности</code>
+            <code>    display: none;</code>
+            <code>  }</code>
+            <code>}</code>
+          </pre>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="sl3" data-js-rule-checkbox>
+            <h3 class="panel__title-text"><code>@media</code> написаны в контексте селекторов</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p><code>@media</code> не считаются увеличивающими вложенность.</p>
+          <pre>
+            <code>// файл promo.scss</code>
+            <code>.promo {</code>
+            <code>  display: block;</code>
+            <code> </code>
+            <code>  @media (min-width: $screen-md) {...} // правильно, написано в контексте</code>
+            <code>}</code>
+            <code> </code>
+            <code>@media (min-width: $screen-md) {      // неправильно, написано вне контекста</code>
+            <code>  .promo {...}</code>
+            <code>}</code>
+          </pre>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="sl4" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Все переменные описаны в одном файле. В переменные вынесены, как минимум: breakpoints, главные размеры текста, главные шрифтовые группы</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <pre>
+            <code>$font-size:                   1.6rem;</code>
+            <code>$font-size--h1:               3rem;</code>
+            <code>$font-size--h2:               2.4rem;</code>
+            <code>$line-height:                 1.375;</code>
+            <code> </code>
+            <code>$font-family:                 Roboto, 'Helvetica Neue', Arial, sans-serif;</code>
+            <code>$font-family--headings:       Georgia, 'Times New Roman', Times, serif;</code>
+            <code> </code>
+            <code>$screen-sm:                   600px;</code>
+            <code>$screen-md:                   900px;</code>
+            <code>$screen-lg:                   1200px;</code>
+            <code>$screen-xl:                   1800px;</code>
+          </pre>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="sl5" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Амперсанд использован правильно</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Амперсанд допустимо использовать перед:</p>
+          <ul>
+            <li>разделителем БЭМ-элемента,</li>
+            <li>разделителем БЭМ-модификатора,</li>
+            <li>псевдоэлементом или псевдоселектором.</li>
+          </ul>
+          <pre>
+            <code>.promo {</code>
+            <code> </code>
+            <code>  // Правильно: амперсанд перед псевдоклассом</code>
+            <code>  &:hover { ... }</code>
+            <code> </code>
+            <code>  // Правильно: амперсанд перед разделителем элемента</code>
+            <code>  &__item {</code>
+            <code> </code>
+            <code>    // НЕПРАВИЛЬНО: амперсанд в месте разделения словосочетания</code>
+            <code>    &-link { ... }</code>
+            <code>  }</code>
+            <code> </code>
+            <code>  // НЕПРАВИЛЬНО: амперсанд в месте разделения словосочетания</code>
+            <code>  &-shover { ... }</code>
+            <code> </code>
+            <code>  // Правильно: модификаторы нужно писать под элементами</code>
+            <code>  &--large { ... }</code>
+            <code>}</code>
+          </pre>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="sl6" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Использован простпроцессинг</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Стили должны обрабатываться, как минимум, Autoprefixer-ом и конкатенатором медиа-выражений.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="sl7" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Примеси не используются для генерации правил с вендорными префиксами</h3>
+          </label>
+        </header>
+        <div class="panel__body"></div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="sl8" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Не используются <code>extend</code></h3>
+          </label>
+        </header>
+        <div class="panel__body"></div>
+      </section>
+
+    </section>
+
+    <section class="check-section"  data-js-check-section  data-js-check-mandatory>
+
+      <h2 class="check-section__header">
+        Дополнительные файлы
+        <span class="label  label--font-size-content">Обязательно</span>
+      </h2>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="ass1" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Выбраны подходящие форматы для изображений</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Если возможно использовать векторную графику — SVG (см. критерий про векторную графику). Нужно изображение с полупрозрачными пикселами — PNG. Нужно фото и допустимы небольшие искажения в угоду малому «весу» — JPEG.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="ass2" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Шрифты подключены в нужных форматах</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Необходимые форматы: <code>woff</code>, <code>woff2</code>.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="ass3" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Растровые изображения оптимизированы</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Растровые изображения должны быть оптимизированы, но не иметь видимых отличий от макета.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="ass4" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Векторные изображения не содержат растра</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Внутри используемых SVG не должно встречаться растровых изображений.</p>
+          <p><strong>Исключение:</strong> использование SVG для каких-либо сложных эффектов на растровых изображениях.</p>
+        </div>
+      </section>
+
+    </section>
+
+    <section class="check-section"  data-js-check-section  data-js-check-mandatory>
+
+      <h2 class="check-section__header">
+        Оптимизация
+        <span class="label  label--font-size-content">Обязательно</span>
+      </h2>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="o1" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Минимум подключенных файлов</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>К странице должны быть подключены 1 CSS-файл и не более 3 синхронно подгружаемых JS-файлов.</p>
+          <p>CSS-файл должен быть подключен в секции <code>&lt;head&gt;</code>. JS-файлы должны быть подключены перед <code>&lt;/body&gt;</code>.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="o2" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Мелкие растровые иконки и декоративные изображения сшиты в компактный спрайт</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Отдельные изображения должны быть представлены в папке с исходниками.</p>
+        </div>
+      </section>
+
+    </section>
+
+    <section class="check-section"  data-js-check-section  data-js-check-mandatory>
+
+      <h2 class="check-section__header">
+        Автоматизация
+        <span class="label  label--font-size-content">Обязательно</span>
+      </h2>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="a1" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Все зависимости проекта устанавливаются командой <code>npm i</code> или <code>yarn install</code> и не хранятся в репозитории проекта</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Зависимости прописаны, как минимум, в <code>package.json</code>, папки зависимостей (<code>node_modules</code>, <code>bower_components</code>) добавлены в <code>.gitignore</code>.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="a2" data-js-rule-checkbox>
+            <h3 class="panel__title-text">В репозитории есть <code>readme.md</code> с описанием того, как стартовать проект локально и описанием дополнительных команд (если есть)</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Выполнение инструкции должно позволять вести разработку проекта вне зависимости от операционной системы и установленных в системе пакетов.</p>
+          <p>Должен быть представлен список доступных команд. Пример: команда <code>npm run deploy</code> — выгрузка содержимого папки <code>build</code> на GH-pages.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="a3" data-js-rule-checkbox>
+            <h3 class="panel__title-text">При старте автоматизации отсутствуют необязательные ресурсоёмкие задачи</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Пример: оптимизация растровых изображений должна происходить по отдельной команде, а не при любом старте локального сервера.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="a4" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Результат сборки проекта не хранится в репозитории</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Результат компиляции/транспиляции не должен присутствовать в репозитории проекта.</p>
+          <p><strong>Исключение:</strong> использование GH-pages, наличие собранного проекта в ветке <code>gh-pages</code></p>
+        </div>
+      </section>
+
+    </section>
+
+    <section class="check-section"  data-js-check-section  data-js-check-mandatory>
+
+      <h2 class="check-section__header">
+        Разное
+        <span class="label  label--font-size-content">Обязательно</span>
+      </h2>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="z1" data-js-rule-checkbox>
+            <h3 class="panel__title-text">В именах файлов нет пробелов, транслита, все символы строчные, использован английский язык</h3>
+          </label>
+        </header>
+        <div class="panel__body"></div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="z2" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Главное меню должно быть видимо при выключенном JS</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>При выключенном JS главные навигационные элементы (меню, поиск) должны быть видимы, а элементы для их сокрытия (бургер, крестик) должны быть скрыты.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="z3" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Верстка имеет минимальные отличия в IE11 и последних 2-х версиях Chrome, Firefox, Opera и Safari</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Допустимы отличия, связанные с рендером шрифтов и использованием нативных элементов форм (флажки, радиокнопки и т.п.).</p>
+          <p>Допустимы различия в вертикальных размерах до 10px, но не более 5%.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="z4" data-js-rule-checkbox>
+            <h3 class="panel__title-text">В именах классов нет транслита, использован английский язык</h3>
+          </label>
+        </header>
+        <div class="panel__body"></div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="z5" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Использованные фреймворки для верстки (Bootstrap и подобные) установлены как зависимости проекта</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>NPM- или yarn-зависимости. Ошибкой считается копирование всех файлов фреймворка в папку исходников и хранение их в репозитории.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="z6" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Сделано базовое типографическое оформление</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <ul>
+            <li>Заданы общие стиль для контентного текста.</li>
+            <li>Прописаны стили для тегов всех заголовков, для параграфов, списков, цитат.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="z7" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Логотип — ссылка на главную страницу</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>На главной странице — <code>&lt;div&gt;</code>. Должен выдерживать смену тега на <code>&lt;h1&gt;</code>.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="z8" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Главное содержимое страницы должно идти в разметке до второстепенного</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <pre>
+            <code>&lt;div class=&quot;main&quot;&gt;</code>
+            <code>  &lt;div class=&quot;main-content&quot;&gt;&Gcy;&lcy;&acy;&vcy;&ncy;&ycy;&jcy; &kcy;&ocy;&ncy;&tcy;&iecy;&ncy;&tcy; &vcy; &rcy;&acy;&zcy;&mcy;&iecy;&tcy;&kcy;&iecy; &icy;&dcy;&iecy;&tcy; &dcy;&ocy; &vcy;&tcy;&ocy;&rcy;&ocy;&scy;&tcy;&iecy;&pcy;&iecy;&ncy;&ncy;&ocy;&gcy;&ocy;&lt;/div&gt;</code>
+            <code>  &lt;aside class=&quot;aside&quot;&gt;&Vcy;&tcy;&ocy;&rcy;&ocy;&scy;&tcy;&iecy;&pcy;&iecy;&ncy;&ncy;&ycy;&jcy; &kcy;&ocy;&ncy;&tcy;&iecy;&ncy;&tcy;&lt;/aside&gt;</code>
             <code>&lt;/div&gt;</code>
           </pre>
         </div>
@@ -308,40 +1065,142 @@
 
     <section class="check-section"  data-js-check-section  data-js-check-optional>
 
-    <h2 class="check-section__header">
-      Секция правил 3
-      <span class="label  label--info  label--font-size-content">Необязательно</span>
-    </h2>
+      <h2 class="check-section__header">
+        Второстепенные критерии
+        <span class="label  label--info  label--font-size-content">Необязательно</span>
+      </h2>
 
       <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
         <header class="panel__header">
           <label class="panel__title">
-            <input class="panel__checkbox" type="checkbox" name="n1" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Какое-то правило 1</h3>
+            <input class="panel__checkbox" type="checkbox" name="v1" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Контроль включенного JS (если нужно)</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
-          <p>111</p>
+          <pre>
+            <code>&lt;html lang=&quot;ru&quot; class=&quot;no-js&quot;&gt;</code>
+            <code>...</code>
+            <code>&lt;script&gt;</code>
+            <code>// &Mcy;&acy;&rcy;&kcy;&iecy;&rcy; &rcy;&acy;&bcy;&ocy;&tcy;&acy;&yucy;&shchcy;&iecy;&gcy;&ocy; javascript</code>
+            <code>document.documentElement.className = document.documentElement.className.replace(&apos;no-js&apos;, &apos;js&apos;);</code>
+            <code>&lt;/script&gt;</code>
+          </pre>
         </div>
       </section>
 
-      <section class="panel  panel--collapse  panel--accent  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
         <header class="panel__header">
           <label class="panel__title">
-            <input class="panel__checkbox" type="checkbox" name="n2" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Какое-то правило 2</h3>
+            <input class="panel__checkbox" type="checkbox" name="v2" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Спорные текстовые элементы могут быть представлены любым тегом</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
-          <p>Какое-то пояснение</p>
-          <pre>
-            <code>&lt;div class=&quot;foo&quot;&gt;</code>
-            <code>  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;</code>
-            <code>&lt;/div&gt;</code>
-          </pre>
+          <p>Если в отношении фрагмента страницы сложно определить является ли он заголовком (или сложно понять уровень заголовка), у этого фрагмента должен быть класс со стилизацией, позволяющей использовать любой подходящий блочный тег (<code>&lt;div&gt;</code>, <code>&lt;h[1-6]&gt;</code>).</p>
         </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="v3" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Текстовые фрагменты, выводимые из CMS, не должны иметь классов на тегах</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Текстовой фрагмент, предположительно появляющийся из CMS целиком, не должен иметь CSS-классов на тегах, но должен иметь обертку с CSS-классом.</p>
+          <p>Пример: текст записи в блоге.</p>
+          <p>Антипример: главная навигация (из CMS выводится текстовые узлы пунктов, но не разметка целиком).</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="v4" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Контроль загрузки шрифтов</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>При первой загрузке страницы сознательно выбран FOIT/FOUT/FOFT, при второй и далее минимизирована заметность выбранного подхода.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="v5" data-js-rule-checkbox>
+            <h3 class="panel__title-text">В автоматизации предусмотрена команда «чистовой» сборки проекта</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Выполнение команды приводит к сборке бьютифицированной разметки, минимизированных стилей/скриптов без карт кода.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="v6" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Минимум тегов без текста</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Допустим пустой тег для добавления бургера/крестика сокрытия главного меню в мобильной версии, пустые теги для добавления иконок.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="v7" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Ретинизация растровой графики</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Если представленные в макете слои позволяют, растровая графика должны быть адаптирована для retina-экранов.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="v8" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Отступы между блоками сделаны однообратно: «вниз по потоку»</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Стоит выбирать отступ в сторону условного окончания потока: если блоки располагаются сверху вниз, слева направо, то внешние отступы следует делать вниз и вправо.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="v9" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Интерлиньяж указан в относительных единицах</h3>
+          </label>
+        </header>
+        <div class="panel__body"></div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="v10" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Векторные изображения, использованные в иконках, собраны в спрайт по принципу <code>symbol > use</code></h3>
+          </label>
+        </header>
+        <div class="panel__body"></div>
       </section>
 
     </section>
