@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "yaspeller -e \".md,.html,.css\" . && eclint check docs/*",
+    "lint": "eclint check test/**/* && echo \"Разметка: написание по БЭМу\" && bemlint --elem='__' --mod='--' test/**/*",
     "precommit": "npm test"
   },
   "repository": {
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/nicothin/criteria-of-quality-frontend#readme",
   "devDependencies": {
+    "bemlint": "^1.4.7",
     "eclint": "^1.1.5",
     "husky": "^0.13.1",
     "yaspeller": "^3.0.0"
