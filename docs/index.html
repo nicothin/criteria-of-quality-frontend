@@ -386,12 +386,12 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="r10" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Для <code>&lt;input&gt;</code> использованы правильные типы</h3>
+            <h3 class="panel__title-text">Отсутствуют гарантировано ошибочные атрибуты типа у <code>&lt;input&gt;</code></h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
-          <p><code>email</code>, <code>tel</code>, <code>date</code> и подобные.</p>
+          <p>Ошибкой считается неиспользование типов <code>email</code>, <code>tel</code> и <code>date</code>.</p>
         </div>
       </section>
 
@@ -1051,12 +1051,13 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="z5" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Использованные фреймворки для верстки (Bootstrap и подобные) установлены как зависимости проекта</h3>
+            <h3 class="panel__title-text">Использованные фреймворки для верстки (Bootstrap и подобные) не хранятся в репозитории (установлены как зависимости проекта)</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
-          <p>NPM- или yarn-зависимости. Ошибкой считается копирование всех файлов фреймворка в папку исходников и хранение их в репозитории.</p>
+          <p>Bootstrap и ему подобные фреймворки должны быть установлены как npm- или yarn-зависимости. Ошибкой считается копирование всех файлов фреймворка в папку исходников и хранение их в репозитории.</p>
+          <p>Ошибкой не считается вырезание из фреймворка небольшой части (к примеру, сетки), модификация и хранение такой части в репозитории.</p>
         </div>
       </section>
 
@@ -1233,7 +1234,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="v9" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Интерлиньяж указан в относительных единицах</h3>
+            <h3 class="panel__title-text">Интерлиньяж указан не в абсолютных единицах</h3>
           </label>
         </header>
         <div class="panel__body"></div>
@@ -1243,7 +1244,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="v10" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Векторные изображения, использованные в иконках, собраны в спрайт по принципу <code>symbol > use</code></h3>
+            <h3 class="panel__title-text">Нет вставок отдельных векторных изображений для иконок (если встречаются векторные иконки, они должны быть собраны в спрайт по принципу <code>symbol > use</code>)</h3>
           </label>
         </header>
         <div class="panel__body"></div>
