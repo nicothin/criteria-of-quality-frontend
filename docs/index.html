@@ -360,12 +360,13 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="r9" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Для ссылок прописаны правильные протоколы</h3>
+            <h3 class="panel__title-text">Для ссылок прописаны правильные протоколы и корректные <code>href</code></h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
           <p>Для ссылок на адрес электропочты — <code>mailto:</code>, для телефонов — <code>tel:</code>, для skype — <code>skype:</code>.</p>
+          <p><code>href</code> ссылки по протоколу <code>tel:</code> должен начинаться с <code>+</code>. Для России первая цифра в <code>href</code> должна быть 7 (а не 8).</p>
         </div>
       </section>
 
@@ -386,7 +387,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="r11" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Если у <code>&lt;input&gt;</code> или <code>&lt;textarea&gt;</code> есть текстовое название, оно указано в привязанном <code>&lt;label&gt;</code></h3>
+            <h3 class="panel__title-text">Отсутствуют <code>&lt;input&gt;</code> и <code>&lt;textarea&gt;</code>, у которых есть текстовое название, но оно указано обычным текстом (не привязано к полю средствами <code>&lt;label&gt;</code>)</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
@@ -410,12 +411,12 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="r12" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Табличные данные представлены в <code>&lt;table&gt;</code></h3>
+            <h3 class="panel__title-text">Отсутствуют табличные данные, размеченные не тегами <code>&lt;table&gt;</code></h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
-          <p><strong>Исключение:</strong> некоторые адаптивные таблицы.</p>
+          <p><strong>Исключение:</strong> некоторые адаптивные таблицы можно размечать не тегами таблиц.</p>
         </div>
       </section>
 
@@ -542,7 +543,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="s8" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Для фрагментов с изображением в фоне явно прописан фоновый цвет</h3>
+            <h3 class="panel__title-text">Для фрагментов с изображением в фоне явно указан фоновый цвет, видимый при сбое загрузки изображения</h3>
           </label>
         </header>
         <div class="panel__body"></div>
@@ -575,7 +576,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="s11" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Изменение размеров textarea не ломает вёрстку</h3>
+            <h3 class="panel__title-text">Отсутствуют <code>textarea</code>, изменение размеров которых ломает вёрстку</h3>
           </label>
         </header>
         <div class="panel__body"></div>
@@ -709,7 +710,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="sl4" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Все переменные описаны в одном файле. В переменные вынесены, как минимум: breakpoints, главные размеры текста, главные шрифтовые группы</h3>
+            <h3 class="panel__title-text">Все переменные описаны в одном файле. В переменные вынесены, как минимум: breakpoints, главные размеры текста, главные шрифтовые группы. В файле с переменными нет ничего, кроме переменных.</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
@@ -735,7 +736,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="sl5" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Амперсанд использован правильно</h3>
+            <h3 class="panel__title-text">Амперсанд использован правильно или не использован вовсе</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
@@ -773,12 +774,13 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="sl6" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Использован простпроцессинг</h3>
+            <h3 class="panel__title-text">Использован минимально необходимый простпроцессинг</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
           <p>Стили должны обрабатываться, как минимум, Autoprefixer-ом и конкатенатором медиа-выражений.</p>
+          <p>По умолчанию к странице должен быть подключен оптимизированный, но не минимизированный стилевой файл. Минимизированная версия может отсутствовать.</p>
         </div>
       </section>
 
@@ -854,7 +856,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="ass4" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Векторные изображения не содержат растра</h3>
+            <h3 class="panel__title-text">Не используются векторные изображения, внутри которых есть растровые</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
@@ -1057,7 +1059,7 @@
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
-          <p>На главной странице — <code>&lt;div&gt;</code>. Должен выдерживать смену тега на <code>&lt;h1&gt;</code>.</p>
+          <p>На главной странице — <code>&lt;div&gt;</code>. Должен выдерживать смену тега на <code>&lt;h1&gt;</code> и на <code>&lt;div&gt;</code>.</p>
         </div>
       </section>
 
@@ -1192,7 +1194,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="v8" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Отступы между блоками сделаны однообразно: «вниз по потоку»</h3>
+            <h3 class="panel__title-text">Отступы между блоками сделаны однообразно: «вниз по потоку» или с обеих сторон</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
