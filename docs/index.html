@@ -465,6 +465,24 @@
         </header>
         <div class="panel__body">
           <p>При указании названия шрифта в <code>font-family</code> должны быть указаны альтернативные семейства и тип семейства.</p>
+          <p>Названия подключенных к странице шрифтов не содержат указания плотности.</p>
+          <pre>
+            <code class="lang-css">@font-face {</code>
+            <code class="lang-css">  font-family: 'Lato'; /* Название шрифта одно */</code>
+            <code class="lang-css">  src: url('lato_400_normal.woff2') format('woff2'),</code>
+            <code class="lang-css">       url('lato_400_normal.woff') format('woff');</code>
+            <code class="lang-css">  font-weight: 400;</code>
+            <code class="lang-css">  font-style: normal;</code>
+            <code class="lang-css">}</code>
+            <code class="lang-css"> </code>
+            <code class="lang-css">@font-face {</code>
+            <code class="lang-css">  font-family: 'Lato'; /* Название шрифта одно */</code>
+            <code class="lang-css">  src: url('lato_700_normal.woff2') format('woff2'),</code>
+            <code class="lang-css">       url('lato_700_normal.woff') format('woff');</code>
+            <code class="lang-css">  font-weight: 700;</code>
+            <code class="lang-css">  font-style: normal;</code>
+            <code class="lang-css">}</code>
+          </pre>
         </div>
       </section>
 
