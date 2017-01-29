@@ -43,9 +43,11 @@
         fieldReviewURL.addEventListener('focus', function() {
           this.select();
         });
+        var find = ["%2C", "%E2%80%94", "%3A", "%3F", "%2F"];
+        var replace = [",", "—", ":", "?", "/"];
         document.getElementById('review-author').value = decodeURI(codeReviewGET.auth).replace( /\+/g, ' ' );
         document.getElementById('review-url').value = decodeURIComponent(codeReviewGET.url);
-        document.getElementById('review-msg').value = decodeURI(codeReviewGET.comm).replace( /\+/g, ' ' );
+        document.getElementById('review-msg').value = decodeURI(codeReviewGET.comm).replaceArray(find, replace).replace( /\+/g, ' ' );
 
         // Поставим фокус в поле с адресом этого обзора
         // fieldReviewURL.focus();
@@ -158,6 +160,16 @@
         return null;
       }
     })(Element.prototype);
+
+    String.prototype.replaceArray = function(find, replace) {
+      var replaceString = this;
+      var regex;
+      for (var i = 0; i < find.length; i++) {
+        regex = new RegExp(find[i], "g");
+        replaceString = replaceString.replace(regex, replace[i]);
+      }
+      return replaceString;
+    };
 
   </script>
 </head>
