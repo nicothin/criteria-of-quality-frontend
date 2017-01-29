@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "yaspeller -e \".md,.html,.css\" . && eclint check docs/*",
-    "lint": "eclint check test/**/* && echo \"Разметка: написание по БЭМу\" && bemlint --elem='__' --mod='--' test/**/*",
+    "lint": "eclint check test/**/* && bemlint --elem='__' --mod='--' test/**/*.html && htmllint test/**/*.html",
     "precommit": "npm test"
   },
   "repository": {
@@ -22,6 +22,7 @@
   "devDependencies": {
     "bemlint": "^1.4.7",
     "eclint": "^1.1.5",
+    "htmllint-cli": "0.0.6",
     "husky": "^0.13.1",
     "yaspeller": "^3.0.0"
   }
