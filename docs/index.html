@@ -927,12 +927,13 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="a1" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Все зависимости проекта устанавливаются командой <code>npm i</code> или <code>yarn install</code> и не хранятся в репозитории проекта</h3>
+            <h3 class="panel__title-text">Все зависимости проекта устанавливаются командой <code>npm i</code> или <code>yarn install</code> и не хранятся в репозитории проекта. После выполнения указанных команд проект полностью готов к работе.</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
           <p>Зависимости прописаны, как минимум, в <code>package.json</code>, папки зависимостей (<code>node_modules</code>, <code>bower_components</code>) добавлены в <code>.gitignore</code>.</p>
+          <p>После установки по <code>npm i</code> или <code>yarn install</code> проект можно собрать командой <code>npm build</code>.</p>
         </div>
       </section>
 
@@ -940,7 +941,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="a2" data-js-rule-checkbox>
-            <h3 class="panel__title-text">В репозитории есть <code>readme.md</code> с описанием того, как стартовать проект локально и описанием дополнительных команд (если есть)</h3>
+            <h3 class="panel__title-text">В репозитории есть <code>readme.md</code> с описанием того, как собрать проект локально (команда <code>npm build</code>) и описанием дополнительных команд (если есть).</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
@@ -974,6 +975,19 @@
         <div class="panel__body">
           <p>Результат компиляции/транспиляции не должен присутствовать в репозитории проекта.</p>
           <p><strong>Исключение:</strong> использование GH-pages, наличие собранного проекта в ветке <code>gh-pages</code></p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="a5" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Для сборки проекта не нужны глобально установленные консольные инструменты</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>Все инструменты для сборки проекта должны поставляться с проектом. <code>npm i</code> — ставим инструменты. <code>npm build</code> — запускаем сборку и получаем результат.</p>
         </div>
       </section>
 
