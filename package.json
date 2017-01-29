@@ -4,7 +4,7 @@
   "description": "Обязательные и необязательные критерии оценки вёрстки.",
   "main": "index.js",
   "scripts": {
-    "test": "yaspeller -e \".md,.html,.css\" . && eclint check docs/*",
+    "test": "yaspeller docs/ -e \".md,.html,.css\" && eclint check docs/*",
     "lint": "eclint check test/**/* && bemlint --elem='__' --mod='--' test/**/*.html && htmllint test/**/*.html",
     "precommit": "npm test"
   },
