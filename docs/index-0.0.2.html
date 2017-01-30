@@ -743,7 +743,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="sl4" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Все переменные описаны в одном файле. В переменные вынесены, как минимум: breakpoints, главные размеры текста, главные шрифтовые группы. В файле с переменными нет ничего, кроме переменных.</h3>
+            <h3 class="panel__title-text">Все переменные описаны в одном файле. В переменные вынесены, как минимум: breakpoints, главные размеры текста, главные шрифтовые группы. В файле с переменными нет ничего, кроме переменных</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
@@ -761,6 +761,23 @@
             <code>$screen-md:                   900px;</code>
             <code>$screen-lg:                   1200px;</code>
             <code>$screen-xl:                   1800px;</code>
+          </pre>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="sl41" data-js-rule-checkbox>
+            <h3 class="panel__title-text">В именах переменных все символы строчные, использован английский язык, дефис в качестве разделителя слов</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <pre>
+            <code>$font-size:                   1.6rem;  // верно</code>
+            <code>$font-size--h1:               3rem;    // верно</code>
+            <code>$line_height:                 1.375;   // ошибка, символ «_» в качестве разделителя</code>
           </pre>
         </div>
       </section>
