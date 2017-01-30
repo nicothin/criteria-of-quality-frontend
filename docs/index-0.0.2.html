@@ -432,7 +432,15 @@
         </div>
       </section>
 
-
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="r13" data-js-rule-checkbox>
+            <h3 class="panel__title-text">Все номера телефонов на странице являются ссылками по протоколу<code>&lt;tel:&gt;</code></h3>
+          </label>
+        </header>
+        <div class="panel__body"></div>
+      </section>
 
     </section>
 
@@ -652,12 +660,25 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="sl1" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Стилевые файлы разделены поблочно</h3>
+            <h3 class="panel__title-text">Одному БЭМ-блоку соответствует один файл</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
         <div class="panel__body">
           <p>Один бэм-блок = один препроцессорный файл. Пример: внутри файла <code>promo.less</code> должна быть только стилизация бэм-блока <code>promo</code>.</p>
+        </div>
+      </section>
+
+      <section class="panel  panel--collapse  check-section__item"  data-js-panel-parent  data-js-panel-collapse-class="panel--collapse"  data-js-success-class="panel--success"  data-js-error-class="panel--error">
+        <header class="panel__header">
+          <label class="panel__title">
+            <input class="panel__checkbox" type="checkbox" name="sl11" data-js-rule-checkbox>
+            <h3 class="panel__title-text">В файлах стилизации Блоков нет импортов файлов других блоков</h3>
+          </label>
+          <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
+        </header>
+        <div class="panel__body">
+          <p>В файле, служащем для стилизации БЭМ-блока не должно быть импортирования других блоков. Допустим импорт файлов, содержимое которых не попадает в скомпилированный CSS (переменные, примеси, функции...).</p>
         </div>
       </section>
 
