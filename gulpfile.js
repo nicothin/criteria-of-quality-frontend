@@ -13,10 +13,10 @@ const testPath = 'test/**/*';
 
 gulp.task('bemlint:check', function (callback) {
   return exec('bemlint --elem="__" --mod="--" -f="json" test/**/*.html', function (err, stdout, stderr) {
-    if(stdout) {
+    if (stdout) {
       let out = JSON.parse(stdout);
       out.forEach(function(fileData, i) {
-        if(fileData.messages) {
+        if (fileData.messages) {
           let relativePath = path.relative('.', fileData.filePath);
           let now = new Date();
           fileData.messages.forEach(function(message) {
@@ -25,23 +25,23 @@ gulp.task('bemlint:check', function (callback) {
         }
       });
     }
-    if(stderr) {
+    if (stderr) {
       console.log('stderr: ' + stderr);
     }
-    if(err) {
+    if (err) {
       callback(err);
     }
   });
 });
 
 gulp.task('editorconfig:check', function(callback) {
-  var hasErrors = false;
-  var stream = gulp.src(testPath)
+  let hasErrors = false;
+  let stream = gulp.src(testPath)
     .pipe(eclint.check({
       reporter: function(file, message) {
         hasErrors = true;
-        var relativePath = path.relative('.', file.path);
-        var now = new Date();
+        let relativePath = path.relative('.', file.path);
+        let now = new Date();
         console.log(error(formatDate(now) + 'FORMATTING ERROR: ') + relativePath + ':', message);
       }
     }));
