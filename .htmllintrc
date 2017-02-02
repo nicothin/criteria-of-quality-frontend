@@ -1,6 +1,6 @@
 {
   "attr-bans": ["align", "background", "bgcolor", "border", "frameborder", "longdesc", "marginwidth", "marginheight", "scrolling"],
-  "attr-name-ignore-regex": "/X-UA-Compatible/",
+  "attr-name-ignore-regex": "http-equiv",
   "attr-name-style": "lowercase",
   "attr-new-line": false,
   "attr-no-dup": true,
