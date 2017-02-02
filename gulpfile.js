@@ -12,7 +12,7 @@ const exec = require('child_process').exec;
 const testPath = 'test/**/*';
 
 gulp.task('bemlint:check', function (callback) {
-  return exec('bemlint --elem="__" --mod="--" -f="json" test/**/*.html', function (err, stdout, stderr) {
+  return exec('bemlint --elem="__" --mod="--" -f="json" '+testPath+'.html', function (err, stdout, stderr) {
     if (stdout) {
       let out = JSON.parse(stdout);
       out.forEach(function(fileData, i) {
