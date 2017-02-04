@@ -570,11 +570,31 @@ textarea.form-field__text-input {
 //----------------------------------------------------------------------------*/
 
 .panel {
+  position: relative;
   margin-bottom: 20px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.panel [data-js-insert-id] {
+  position: absolute;
+  top: -42px;
+  left: -1px;
+  width: 1px;
+  height: 1px;
+  z-index: -1;
+}
+.panel [data-js-insert-to-this-link] {
+  color: currentColor;
+  text-decoration: none;
+  line-height: 22px;
+  padding: 13px 10px;
+}
+@media (min-width: 600px) {
+  .panel [data-js-insert-to-this-link] {
+    padding: 15px 10px;
+  }
 }
 .panel__body {
   padding: 15px 15px 0;
@@ -592,21 +612,21 @@ textarea.form-field__text-input {
 }
 .panel__title {
   margin: 0;
-  padding: 15px 15px 0;
+  padding: 13px 15px;
   color: inherit;
   flex-grow: 1;
   display: flex;
   align-items: baseline;
 }
-@media (min-width: 600px) {
-  .panel__title {
-    padding-bottom: 12px;
-  }
-}
 .panel__title-btn-wrap {
   display: block;
   text-align: right;
-  padding: 10px;
+  padding: 11px 0;
+}
+@media (min-width: 600px) {
+  .panel__title-btn-wrap {
+    padding: 12px 0;
+  }
 }
 .panel__title-text {
   display: block;
