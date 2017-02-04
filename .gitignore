@@ -12,3 +12,5 @@ node_modules/
 .publish
 ex_files
 Thumbs.db
+test/*
+!test/readme.md
