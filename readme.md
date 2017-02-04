@@ -12,6 +12,7 @@
 
 Проверка | Инструмент | Описание
 -- | -- | --
-Соответствие БЭМ | [bemlint](https://github.com/DesTincT/bemlint) | Соответствие разметки БЭМ-у с разделителями `__` и `--`
-Соответствие `.editorconfig` | [eclint](https://github.com/jedmao/eclint) | Соответствие всех файлов правилам, описанным в `.editorconfig` (файл конфигурации берется из корня этого репозитория)
+Соответствие БЭМ | [bemlint](https://github.com/DesTincT/bemlint) | Соответствие разметки правилам БЭМ-а (разделители `__` и `--`)
+Соответствие `.editorconfig` | [eclint](https://github.com/jedmao/eclint) | Соответствие всех файлов правилам, описанным в `.editorconfig`
+Соответствие `.htmllintrc` | [htmllint](https://github.com/htmllint/htmllint) | Соответствие разметки правилам, описанным в `.htmllintrc`
  |  |
