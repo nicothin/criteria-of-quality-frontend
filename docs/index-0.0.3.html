@@ -29,22 +29,26 @@
       var allPanelIds = [];
       document.querySelectorAll('[data-js-panel-parent]').forEach(function(panel){
         var panelId = panel.querySelector('[data-js-rule-checkbox]').name;
-        var panelAnchor = document.createElement('a');
-        var panelLink = document.createElement('a');
         var panelHeaderText = panel.querySelector('.panel__title-text').innerHTML;
+        // якорь, к которому будет прокрутка
+        var panelAnchor = document.createElement('a');
         panelAnchor.setAttribute('id', panelId);
         panelAnchor.setAttribute('data-js-insert-id', '');
+        panel.insertBefore(panelAnchor, panel.firstChild);
+        // ссылка, указывающая на якорь
+        var panelLink = document.createElement('a');
         panelLink.setAttribute('href', '#'+panelId);
         panelLink.setAttribute('data-js-insert-to-this-link', '');
+        panelLink.setAttribute('title', 'Ссылка на этот критерий');
         panelLink.innerHTML = '#';
-        panel.insertBefore(panelAnchor, panel.firstChild);
         panel.querySelector('.panel__header').appendChild(panelLink);
+        // вывод предупреждения, если повторяются ID
         if (checkAvailability(allPanelIds, panelId)) {
           console.error('АХТУНГ! Есть одинаковые [name] у чекбоксов! Повторяется [name="'+panelId+'"]');
         }
         allPanelIds.push(panelId);
+        // добавление буквенного идентификатора в начало заголовка
         panel.querySelector('.panel__title-text').innerHTML = transliterate(panelId, true).toUpperCase() + '. ' + panelHeaderText;
-        // console.log(transliterate(panelId, true));
       });
 
       // Добавим на html флаг загрузки страницы

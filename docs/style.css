@@ -586,10 +586,11 @@ textarea.form-field__text-input {
   z-index: -1;
 }
 .panel [data-js-insert-to-this-link] {
+  padding: 13px 10px;
   color: currentColor;
+  font-weight: 700;
   text-decoration: none;
   line-height: 22px;
-  padding: 13px 10px;
 }
 @media (min-width: 600px) {
   .panel [data-js-insert-to-this-link] {
