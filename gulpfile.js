@@ -5,8 +5,6 @@
 const gulp = require('gulp');
 const eclint = require('eclint');
 const path = require('path');
-const chalk = require('chalk');
-const error = chalk.red;
 const exec = require('child_process').exec;
 
 const testPath = 'test/**/*';
@@ -18,9 +16,8 @@ gulp.task('bemlint:check', function (callback) {
       out.forEach(function(fileData, i) {
         if (fileData.messages) {
           let relativePath = path.relative('.', fileData.filePath);
-          let now = new Date();
           fileData.messages.forEach(function(message) {
-            console.log(error(formatDate(now) + 'BEM ERROR: ') + relativePath + ':', 'line ' + message.line + ':' + message.column + ': ' + message.message + '(' + message.isBlockModNoBlock + ')');
+            console.log(relativePath + ': line ' + message.line + ', col ' + message.column + ', BEM: ' + message.message);
           });
         }
       });
@@ -41,8 +38,7 @@ gulp.task('editorconfig:check', function(callback) {
       reporter: function(file, message) {
         hasErrors = true;
         let relativePath = path.relative('.', file.path);
-        let now = new Date();
-        console.log(error(formatDate(now) + 'FORMATTING ERROR: ') + relativePath + ':', message);
+        console.log(relativePath + ':', message);
       }
     }));
   stream.on('finish', function() {
@@ -62,13 +58,3 @@ gulp.task('lint', gulp.series(
 gulp.task('default',  gulp.series(
   'lint'
 ));
-
-function formatDate(date) {
-  var hh = date.getHours();
-  if (hh < 10) hh = '0' + hh;
-  var mm = date.getMinutes();
-  if (mm < 10) mm = '0' + mm;
-  var ss = date.getSeconds();
-  if (ss < 10) ss = '0' + ss;
-  return '[' +hh + ':' + mm + ':' + ss + '] ';
-}
