@@ -21,7 +21,6 @@
   "homepage": "https://github.com/nicothin/criteria-of-quality-frontend#readme",
   "devDependencies": {
     "bemlint": "^1.5.0",
-    "eclint": "^1.1.5",
     "gulp": "github:gulpjs/gulp#4.0",
     "htmllint-cli": "0.0.6",
     "husky": "^0.13.1",
