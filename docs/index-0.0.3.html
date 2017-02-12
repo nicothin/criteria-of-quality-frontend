@@ -455,15 +455,22 @@
         </header>
         <div class="panel__body">
           <pre>
+            <code>&lt;-- Правильно (название привязано к полю): --&gt;</code>
             <code>&lt;label class="field-text"&gt;</code>
             <code>  &lt;span class="field-text__name"&gt;Название поля &lt;/span&gt;</code>
             <code>  &lt;input class="field-text__input" type="text" value="" placeholder="Образец заполнения"&gt;</code>
             <code>&lt;/label&gt;</code>
             <code> </code>
-            <code>&lt;!-- или --&gt;</code>
+            <code>&lt;-- Правильно (название привязано к полю): --&gt;</code>
             <code>&lt;div class="field-text"&gt;</code>
             <code>  &lt;label for="input-id" class="field-text__name"&gt;Название поля &lt;/label&gt;</code>
             <code>  &lt;input id="input-id" class="field-text__input" type="text" value="" placeholder="Образец заполнения"&gt;</code>
+            <code>&lt;/div&gt;</code>
+            <code> </code>
+            <code>&lt;-- Ошибка (название само по себе): --&gt;</code>
+            <code>&lt;div class="field-text"&gt;</code>
+            <code>  &lt;div class="field-text__name"&gt;Название поля &lt;/div&gt;</code>
+            <code>  &lt;input class="field-text__input" type="text" value="" placeholder="Образец заполнения"&gt;</code>
             <code>&lt;/div&gt;</code>
           </pre>
         </div>
@@ -526,13 +533,14 @@
         </header>
         <div class="panel__body">
           <p>При указании названия шрифта в <code>font-family</code> должны быть указаны альтернативные семейства и тип семейства.</p>
+          <p>Свойства контентного текста должны быть заданы для <code>body</code>.</p>
           <pre>
             <code class="lang-css">body {</code>
             <code class="lang-css">  font-family: 'Lato', 'Open Sans', sans-serif;</code>
             <code class="lang-css">  font-size: 14px;</code>
             <code class="lang-css">}</code>
           </pre>
-          <p>Названия подключенных к странице шрифтов не содержат указания плотности.</p>
+          <p>Названия подключенных к странице шрифтов не должны содержать указания плотности.</p>
           <pre>
             <code class="lang-css">@font-face {</code>
             <code class="lang-css">  font-family: 'Lato';</code>
@@ -1272,7 +1280,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="v1" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Спорные текстовые элементы могут быть представлены любым тегом</h3>
+            <h3 class="panel__title-text">Спорные текстовые элементы могут быть представлены любым тегом без изменения внешнего вида</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
@@ -1285,7 +1293,7 @@
         <header class="panel__header">
           <label class="panel__title">
             <input class="panel__checkbox" type="checkbox" name="v2" data-js-rule-checkbox>
-            <h3 class="panel__title-text">Текстовые фрагменты, выводимые из CMS, не должны иметь классов на тегах</h3>
+            <h3 class="panel__title-text">Текстовые фрагменты, выводимые из CMS, не должны иметь CSS-классов</h3>
           </label>
           <span class="panel__title-btn-wrap"><button type="button" class="btn  check-section__btn" data-js-panel-collapse-toggler>Подробнее</button></span>
         </header>
